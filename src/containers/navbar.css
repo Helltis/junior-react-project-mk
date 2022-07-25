@@ -1,0 +1,86 @@
+.navbar {
+  color: var(--color-text);
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.navbar_links {
+  flex: 2;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.navbar_links li {
+  display: flex;
+  border-bottom: 2px solid rgba(255, 255, 255, 0);
+  padding: 0.5rem 0.5rem 1.5rem 0.5rem;
+}
+
+.navbar_links a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbar_links li:hover {
+  color: var(--color-button);
+  border-bottom: 2px solid var(--color-button);
+}
+
+.navbar_links li.active {
+  color: var(--color-button);
+  border-bottom: 2px solid var(--color-button);
+}
+
+.navbar_icons {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.navbar_logo {
+  display: flex;
+  flex: 1;
+  padding: 0;
+  justify-content: center;
+}
+
+.navbar_select {
+  position: relative;
+}
+
+.navbar_select select {
+  border: none;
+  background-color: var(--color-bg);
+  font-weight: 500;
+  font-size: 18px;
+  cursor: pointer;
+  outline: none;
+}
+
+.navbar_select_icon {
+  position: absolute;
+  top: 4px;
+  right: 1px;
+  background: var(--color-bg);
+  height: 12px;
+  width: 12px;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+.navbar_select select:active ~ .navbar_select_icon {
+  transform: rotate(180deg);
+}
