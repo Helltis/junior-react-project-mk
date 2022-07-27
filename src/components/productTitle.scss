@@ -1,0 +1,11 @@
+.productTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.productTitle_brand {
+  font-weight: 600;
+}
