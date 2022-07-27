@@ -1,0 +1,33 @@
+.productColor {
+  display: flex;
+  flex-direction: column;
+}
+
+.productColor_text {
+  font-family: var(--font-robotoCondensed);
+  padding-bottom: 8px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.productColor_buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.productColor_buttons_radio {
+  display: none;
+  &:checked + .productColor_buttons_label {
+    border: 1px solid lightgreen;
+  }
+}
+
+.productColor_buttons_label {
+  height: 33px;
+  width: 33px;
+  background-color: green;
+  padding: 2px;
+  background-clip: content-box;
+  border: 1px solid var(--color-bg);
+  transition: border 0.1s;
+}
