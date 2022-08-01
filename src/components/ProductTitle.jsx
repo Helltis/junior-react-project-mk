@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./productTitle.scss";
 
-export class ProductName extends Component {
+export class ProductTitle extends Component {
   render() {
     return (
       <div className="productTitle">
@@ -12,4 +12,4 @@ export class ProductName extends Component {
   }
 }
 
-export default ProductName;
+export default ProductTitle;

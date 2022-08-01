@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./productProperty.scss";
 
-export class ProductSize extends Component {
+export class ProductProperty extends Component {
   render() {
     return (
       <div className="productProperty">
@@ -49,4 +49,4 @@ export class ProductSize extends Component {
   }
 }
 
-export default ProductSize;
+export default ProductProperty;
