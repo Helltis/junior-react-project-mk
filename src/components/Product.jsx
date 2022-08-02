@@ -3,7 +3,7 @@ import product from "../assets/product.png";
 import "./product.scss";
 import cartIcon from "../assets/cartIcon.svg";
 
-// Implement shopping cart on hover & out of stock functionality
+// TODO out of stock functionality
 export class Product extends Component {
   render() {
     return (

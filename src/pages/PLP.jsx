@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./plp.scss";
 import Product from "../components/Product";
-import Navbar from "../containers/Navbar";
+import Navbar from "../components/Navbar";
 
 export class Category extends Component {
   render() {
