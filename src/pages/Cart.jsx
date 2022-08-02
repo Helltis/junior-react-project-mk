@@ -31,6 +31,20 @@ export class Cart extends Component {
           </div>
           <CartComponents />
         </div>
+        <span className="pageCart_divider" />
+        <div className="pageCart_summary">
+          <div className="pageCart_summary_static">
+            <p>Tax 21%:</p>
+            <p>Quantity:</p>
+            <p style={{ fontWeight: 500 }}>Total:</p>
+          </div>
+          <div className="pageCart_summary_dynamic">
+            <p>$42.00</p>
+            <p>2</p>
+            <p>$200.00</p>
+          </div>
+        </div>
+        <button className="pageCart_order">ORDER</button>
       </div>
     );
   }
