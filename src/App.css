@@ -16,3 +16,8 @@ a {
   color: unset;
   text-decoration: none;
 }
+
+button {
+  all: unset;
+  cursor: pointer;
+}

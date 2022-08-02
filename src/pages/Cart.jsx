@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import CartContainer from "../containers/CartContainer";
 import { Navbar } from "../containers/Navbar";
 
 export class Cart extends Component {
@@ -7,7 +6,6 @@ export class Cart extends Component {
     return (
       <div className="pageCart">
         <Navbar />
-        <CartContainer />
       </div>
     );
   }
