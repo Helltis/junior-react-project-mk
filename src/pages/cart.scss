@@ -1,0 +1,29 @@
+.pageCart_item {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.pageCart_selectedProps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pageCart_selectedProps span {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.pageCart_title {
+  margin-top: 80px;
+  margin-bottom: 55px;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.pageCart_divider {
+  display: flex;
+  border: 1px solid #e5e5e5;
+}

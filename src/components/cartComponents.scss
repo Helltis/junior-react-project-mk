@@ -1,16 +1,19 @@
 .cartComponents {
   display: flex;
-  gap: 1rem;
+  gap: 24px;
+  height: 300px;
 }
 
 .cartComponents_quantity {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  text-align: center;
 }
 
-.cartComponents_quantity button {
-  border: 1px solid black;
+.cartComponents_quantity_number {
+  font-weight: 500;
+  font-size: 24px;
 }
 
 .cartComponents_preview {
@@ -18,23 +21,15 @@
 }
 .cartComponents_preview img {
   width: 200px;
-  height: 300px;
-  object-fit: none;
-  object-position: 50% 10%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .cartComponents_preview_buttons {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   z-index: 100;
   position: absolute;
   right: 10%;
-  bottom: 10%;
-}
-
-.cartComponents_preview_buttons button {
-  width: 24px;
-  height: 24px;
-  color: #fff;
-  background-color: black;
+  bottom: 6%;
 }
