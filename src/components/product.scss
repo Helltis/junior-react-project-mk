@@ -23,6 +23,37 @@
   }
 }
 
+.product_outOfStock {
+  position: relative;
+  width: 380px;
+  height: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+  font-size: 18px;
+  opacity: 0.5;
+  pointer-events: none;
+  &::after {
+    content: "OUT OF STOCK";
+    position: absolute;
+    top: 40%;
+    left: 25%;
+    font-weight: 400;
+    font-size: 24px;
+  }
+}
+
+.product_image {
+  height: 350px;
+  width: 350px;
+  object-fit: scale-down;
+}
+
 .product_cartIcon {
   position: absolute;
   top: 71%;

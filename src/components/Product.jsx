@@ -1,21 +1,31 @@
 import React, { Component } from "react";
-import product from "../assets/product.png";
 import "./product.scss";
 import cartIcon from "../assets/cartIcon.svg";
 
-// TODO out of stock functionality
 export class Product extends Component {
   render() {
+    const isInStock = this.props.product.inStock
+      ? "product"
+      : "product_outOfStock";
     return (
-      <div className="product">
+      <div className={isInStock}>
         <div className="product_cartIcon">
           <img src={cartIcon} alt="cart icon" />
         </div>
-        <img src={product} alt="sample product" className="product_image" />
+        <img
+          src={this.props.product.gallery[0]}
+          alt="sample product"
+          className="product_image"
+        />
 
         <div className="product_info">
-          <p className="product_info_name">Apollo Running Short</p>
-          <p className="product_info_price">$50.00</p>
+          <p className="product_info_name">
+            {this.props.product.brand} {this.props.product.name}
+          </p>
+          <p className="product_info_price">
+            {this.props.product.prices[0].currency.symbol}
+            {this.props.product.prices[0].amount}
+          </p>
         </div>
       </div>
     );
