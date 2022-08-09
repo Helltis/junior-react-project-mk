@@ -3,39 +3,72 @@ import logo from "../assets/logo.svg";
 import emptyCartIcon from "../assets/emptyCartIcon.svg";
 import "./navbar.scss";
 import arrow from "../assets/arrow.svg";
+import { gql } from "@apollo/client";
+import { Query } from "@apollo/react-components";
+
+const query = gql`
+  {
+    categories {
+      name
+    }
+    currencies {
+      label
+      symbol
+    }
+  }
+`;
 
 export class Navbar extends Component {
+  state = {
+    category: "all",
+  };
+
+  setCategory = (cat) => {
+    this.setState({
+      category: cat,
+    });
+  };
+
   render() {
+    console.log(this.state.category);
     return (
-      <nav className="navbar">
-        <ul className="navbar_links">
-          <li>
-            <a href="/">WOMEN</a>
-          </li>
-          <li>
-            <a href="/">MEN</a>
-          </li>
-          <li>
-            <a href="/">KIDS</a>
-          </li>
-        </ul>
-        {/* TODO implement homepage link through logo */}
-        <a href="/" className="navbar_logo">
-          <img src={logo} alt="store logo" />
-        </a>
-        <div className="navbar_icons">
-          <div className="navbar_select">
-            <select>
-              <option>$</option>
-              <option>€</option>
-              <option>¥</option>
-            </select>
-            {/* FIXME fix arrow flip on all browsers */}
-            <img src={arrow} className="navbar_select_icon" alt="icon" />
-          </div>
-          <img src={emptyCartIcon} alt="cart overlay" />
-        </div>
-      </nav>
+      <Query query={query}>
+        {({ data, loading, error }) => {
+          if (loading) return <p>Loading...</p>;
+          if (error) return <p>ERROR!!!!</p>;
+          return (
+            <nav className="navbar">
+              <ul className="navbar_links">
+                {data.categories.map((el) => (
+                  <li key={el.name} onClick={() => this.setCategory(el.name)}>
+                    {/* TODO refactor a to button */}
+                    <a>{el.name.toUpperCase()}</a>
+                  </li>
+                ))}
+              </ul>
+              {/* TODO implement homepage link through logo */}
+              <a href="/" className="navbar_logo">
+                <img src={logo} alt="store logo" />
+              </a>
+              <div className="navbar_icons">
+                <div className="navbar_select">
+                  <select>
+                    {data.currencies.map((el) => (
+                      <option value="" key={el.label}>
+                        {el.symbol} {el.label}
+                      </option>
+                    ))}
+                  </select>
+                  {/* FIXME fix arrow flip on all browsers */}
+                  <img src={arrow} className="navbar_select_icon" alt="icon" />
+                </div>
+                {/* TODO cart item number */}
+                <img src={emptyCartIcon} alt="cart overlay" />
+              </div>
+            </nav>
+          );
+        }}
+      </Query>
     );
   }
 }

@@ -36,7 +36,7 @@
   border-bottom: 2px solid var(--color-button);
 }
 
-.navbar_links li.active {
+.navbar_links li:active {
   color: var(--color-button);
   border-bottom: 2px solid var(--color-button);
 }
