@@ -63,6 +63,7 @@
 }
 
 .navbar_select select {
+  all: unset;
   border: none;
   background-color: var(--color-bg);
   font-weight: 500;

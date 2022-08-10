@@ -5,9 +5,9 @@ import Navbar from "../components/Navbar";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/react-components";
 
-const query = gql`
-  query category($input: CategoryInput) {
-    category(input: $input) {
+const GET_PRODUCTS = gql`
+  query getCategory($category: CategoryInput) {
+    category(input: $category) {
       name
       products {
         id
@@ -28,11 +28,28 @@ const query = gql`
 `;
 
 export class Category extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { title: "tech", currencyIndex: 0 };
+  }
+
+  setCategory = (newCategory) => {
+    this.setState({ title: newCategory });
+  };
+
+  setCurrency = (currencyIndex) => {
+    this.setState({ currencyIndex: currencyIndex });
+  };
+
   render() {
+    console.log(this.state);
     return (
       <div className="category">
-        <Navbar />
-        <Query query={query} variables={{ title: "all" }}>
+        <Navbar setCategory={this.setCategory} setCurrency={this.setCurrency} />
+        <Query
+          query={GET_PRODUCTS}
+          variables={{ category: { title: this.state.title } }}
+        >
           {({ data, loading, error }) => {
             if (loading) return <p>Loading...</p>;
             if (error) return <p>ERROR!!!!</p>;
@@ -42,7 +59,11 @@ export class Category extends Component {
                 <h1 className="category_title">{data.category.name}</h1>
                 <div className="category_products">
                   {data.category.products.map((product) => (
-                    <Product key={product.id} product={product} />
+                    <Product
+                      key={product.id}
+                      product={product}
+                      currencyIndex={this.state.currencyIndex}
+                    />
                   ))}
                 </div>
               </>

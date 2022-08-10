@@ -1,12 +1,12 @@
 // FIXME this is not Cart component but PDP!!!
 import React, { Component } from "react";
-import "./cartContainer.scss";
+import "./productContainer.scss";
 import { ProductGallery } from "./ProductGallery";
 import { ProductTitle } from "./ProductTitle";
 import { ProductProperty } from "./ProductProperty";
 import { ProductColor } from "./ProductColor";
 
-export class CartContainer extends Component {
+export class ProductContainer extends Component {
   render() {
     return (
       <div className="containerCart">
@@ -36,4 +36,4 @@ export class CartContainer extends Component {
   }
 }
 
-export default CartContainer;
+export default ProductContainer;

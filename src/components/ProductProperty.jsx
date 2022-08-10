@@ -13,7 +13,7 @@ export class ProductProperty extends Component {
             name="propertyButton"
             id="r1"
           />
-          <label className="productProperty_buttons_label" for="r1">
+          <label className="productProperty_buttons_label" htmlFor="r1">
             S
           </label>
           <input
@@ -22,7 +22,7 @@ export class ProductProperty extends Component {
             name="propertyButton"
             id="r2"
           />
-          <label className="productProperty_buttons_label" for="r2">
+          <label className="productProperty_buttons_label" htmlFor="r2">
             M
           </label>
           <input
@@ -31,7 +31,7 @@ export class ProductProperty extends Component {
             name="propertyButton"
             id="r3"
           />
-          <label className="productProperty_buttons_label" for="r3">
+          <label className="productProperty_buttons_label" htmlFor="r3">
             L
           </label>
           <input
@@ -40,7 +40,7 @@ export class ProductProperty extends Component {
             name="propertyButton"
             id="r4"
           />
-          <label className="productProperty_buttons_label" for="r4">
+          <label className="productProperty_buttons_label" htmlFor="r4">
             XL
           </label>
         </div>

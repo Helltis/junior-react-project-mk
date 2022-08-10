@@ -19,18 +19,16 @@ const query = gql`
 `;
 
 export class Navbar extends Component {
-  state = {
-    category: "all",
+  state = { currencyIndex: 1 };
+  setCategory = (cat) => {
+    this.props.setCategory(cat);
   };
 
-  setCategory = (cat) => {
-    this.setState({
-      category: cat,
-    });
+  setCurrency = (curr) => {
+    this.props.setCurrency(curr);
   };
 
   render() {
-    console.log(this.state.category);
     return (
       <Query query={query}>
         {({ data, loading, error }) => {
@@ -52,9 +50,18 @@ export class Navbar extends Component {
               </a>
               <div className="navbar_icons">
                 <div className="navbar_select">
-                  <select>
+                  {/* getting index of currency to change state on currency switch */}
+                  <select
+                    onChange={(e) =>
+                      this.setCurrency(
+                        data.currencies.findIndex(
+                          (price) => price.label === e.target.value
+                        )
+                      )
+                    }
+                  >
                     {data.currencies.map((el) => (
-                      <option value="" key={el.label}>
+                      <option value={el.label} key={el.label}>
                         {el.symbol} {el.label}
                       </option>
                     ))}

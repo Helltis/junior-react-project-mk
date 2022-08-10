@@ -23,8 +23,11 @@ export class Product extends Component {
             {this.props.product.brand} {this.props.product.name}
           </p>
           <p className="product_info_price">
-            {this.props.product.prices[0].currency.symbol}
-            {this.props.product.prices[0].amount}
+            {
+              this.props.product.prices[this.props.currencyIndex].currency
+                .symbol
+            }
+            {this.props.product.prices[this.props.currencyIndex].amount}
           </p>
         </div>
       </div>
