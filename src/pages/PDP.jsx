@@ -5,8 +5,8 @@ import { Query } from "@apollo/react-components";
 import { gql } from "@apollo/client";
 
 const GET_PRODUCT = gql`
-  query {
-    product(id: "jacket-canada-goosee") {
+  query getProduct($productId: String!) {
+    product(id: $productId) {
       id
       name
       gallery
@@ -18,12 +18,15 @@ const GET_PRODUCT = gql`
 export class PDP extends Component {
   render() {
     return (
-      <Query query={GET_PRODUCT}>
-        {({ data }) => {
+      <Query query={GET_PRODUCT} variables={{ productId: "xbox-series-s" }}>
+        {({ data, loading, error }) => {
+          if (loading) return <p>Loading...</p>;
+          if (error) return <p>{error}</p>;
+          console.log(data);
           return (
             <div>
               <Navbar />
-              <ProductContainer />
+              <ProductContainer product={data.product} />
             </div>
           );
         }}

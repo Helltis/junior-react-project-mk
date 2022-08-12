@@ -1,20 +1,20 @@
-// FIXME this is not Cart component but PDP!!!
 import React, { Component } from "react";
 import "./productContainer.scss";
 import { ProductGallery } from "./ProductGallery";
 import { ProductTitle } from "./ProductTitle";
 import { ProductProperty } from "./ProductProperty";
 import { ProductColor } from "./ProductColor";
+import parse from "html-react-parser";
 
 export class ProductContainer extends Component {
   render() {
     return (
       <div className="containerCart">
-        <ProductGallery />
+        <ProductGallery gallery={this.props.product.gallery} />
         <div className="containerCart_properties">
           <ProductTitle />
           <ProductProperty />
-          <ProductColor />
+          {this.props.product.description && <ProductColor />}
           <div className="containerCart_price">
             <p className="containerCart_price_title">PRICE:</p>
             <p className="containerCart_price_number">$300.00</p>
@@ -23,12 +23,7 @@ export class ProductContainer extends Component {
             <button>ADD TO CART</button>
           </div>
           <div className="containerCart_description">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
-              consequatur fuga, maxime asperiores velit laudantium consequuntur,
-              omnis commodi ipsum odit dignissimos minus odio officia sed
-              numquam quod temporibus deleniti. Molestias.
-            </p>
+            {parse(this.props.product.description)}
           </div>
         </div>
       </div>

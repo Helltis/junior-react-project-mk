@@ -8,22 +8,24 @@ import "./productGallery.scss";
 export class ProductGallery extends Component {
   arrImg = [product, product2, product3, product4];
   state = {
-    selectedImg: this.arrImg[0],
+    selectedImg: this.props.gallery[0],
   };
 
   render() {
     return (
       <div className="productGallery">
-        <div className="productGallery_thumbs">
-          {this.arrImg.map((img, index) => (
-            <img
-              src={img}
-              alt="dog"
-              key={index}
-              onClick={() => this.setState({ selectedImg: img })}
-            />
-          ))}
-        </div>
+        {this.props.gallery.length > 1 && (
+          <div className="productGallery_thumbs">
+            {this.props.gallery.map((img, index) => (
+              <img
+                src={img}
+                alt="dog"
+                key={index}
+                onClick={() => this.setState({ selectedImg: img })}
+              />
+            ))}
+          </div>
+        )}
         <div className="productGallery_container">
           <img
             src={this.state.selectedImg}
