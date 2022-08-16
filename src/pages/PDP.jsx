@@ -9,24 +9,50 @@ const GET_PRODUCT = gql`
     product(id: $productId) {
       id
       name
+      brand
       gallery
       description
+      prices {
+        amount
+        currency {
+          label
+          symbol
+        }
+      }
+      attributes {
+        id
+        name
+        type
+        items {
+          displayValue
+          value
+          id
+        }
+      }
     }
   }
 `;
 
 export class PDP extends Component {
+  state = { currencyIndex: 0 };
+
+  setCurrency = (currencyIndex) => {
+    this.setState({ currencyIndex: currencyIndex });
+  };
   render() {
     return (
-      <Query query={GET_PRODUCT} variables={{ productId: "xbox-series-s" }}>
+      <Query query={GET_PRODUCT} variables={{ productId: "apple-imac-2021" }}>
         {({ data, loading, error }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>{error}</p>;
           console.log(data);
           return (
             <div>
-              <Navbar />
-              <ProductContainer product={data.product} />
+              <Navbar setCurrency={this.setCurrency} />
+              <ProductContainer
+                product={data.product}
+                currencyIndex={this.state.currencyIndex}
+              />
             </div>
           );
         }}

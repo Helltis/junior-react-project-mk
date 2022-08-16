@@ -19,7 +19,6 @@ const query = gql`
 `;
 
 export class Navbar extends Component {
-  state = { currencyIndex: 1 };
   setCategory = (cat) => {
     this.props.setCategory(cat);
   };

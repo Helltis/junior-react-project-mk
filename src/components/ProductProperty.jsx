@@ -5,44 +5,27 @@ export class ProductProperty extends Component {
   render() {
     return (
       <div className="productProperty">
-        <p className="productProperty_text">SIZE:</p>
+        <p className="productProperty_text">
+          {this.props.attribute.name.toUpperCase()}:
+        </p>
         <div className="productProperty_buttons">
-          <input
-            className="productProperty_buttons_radio"
-            type="radio"
-            name="propertyButton"
-            id="r1"
-          />
-          <label className="productProperty_buttons_label" htmlFor="r1">
-            S
-          </label>
-          <input
-            className="productProperty_buttons_radio"
-            type="radio"
-            name="propertyButton"
-            id="r2"
-          />
-          <label className="productProperty_buttons_label" htmlFor="r2">
-            M
-          </label>
-          <input
-            className="productProperty_buttons_radio"
-            type="radio"
-            name="propertyButton"
-            id="r3"
-          />
-          <label className="productProperty_buttons_label" htmlFor="r3">
-            L
-          </label>
-          <input
-            className="productProperty_buttons_radio"
-            type="radio"
-            name="propertyButton"
-            id="r4"
-          />
-          <label className="productProperty_buttons_label" htmlFor="r4">
-            XL
-          </label>
+          {/* FIXME yes - no ID */}
+          {this.props.attribute.items.map((item) => (
+            <React.Fragment key={item.id}>
+              <input
+                className="productProperty_buttons_radio"
+                type="radio"
+                name={this.props.attribute.name}
+                id={item.id}
+              />
+              <label
+                className="productProperty_buttons_label"
+                htmlFor={item.id}
+              >
+                {item.value}
+              </label>
+            </React.Fragment>
+          ))}
         </div>
       </div>
     );

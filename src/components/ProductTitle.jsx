@@ -5,8 +5,8 @@ export class ProductTitle extends Component {
   render() {
     return (
       <div className="productTitle">
-        <p className="productTitle_brand">Apollo</p>
-        <p className="productTitle_name">Running Short</p>
+        <p className="productTitle_brand">{this.props.brand}</p>
+        <p className="productTitle_name">{this.props.name}</p>
       </div>
     );
   }

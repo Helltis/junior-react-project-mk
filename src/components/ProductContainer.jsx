@@ -8,16 +8,30 @@ import parse from "html-react-parser";
 
 export class ProductContainer extends Component {
   render() {
+    const price = this.props.product.prices[this.props.currencyIndex];
     return (
       <div className="containerCart">
         <ProductGallery gallery={this.props.product.gallery} />
         <div className="containerCart_properties">
-          <ProductTitle />
-          <ProductProperty />
-          {this.props.product.description && <ProductColor />}
+          <ProductTitle
+            name={this.props.product.name}
+            brand={this.props.product.brand}
+          />
+          {this.props.product.attributes.map((attribute) => {
+            if (attribute.type === "text") {
+              return (
+                <ProductProperty attribute={attribute} key={attribute.id} />
+              );
+            } else {
+              return <ProductColor attributes={attribute} key={attribute.id} />;
+            }
+          })}
           <div className="containerCart_price">
             <p className="containerCart_price_title">PRICE:</p>
-            <p className="containerCart_price_number">$300.00</p>
+            <p className="containerCart_price_number">
+              {price.currency.symbol}
+              {price.amount}
+            </p>
           </div>
           <div className="containerCart_button">
             <button>ADD TO CART</button>
