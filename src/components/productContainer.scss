@@ -31,6 +31,17 @@
   text-align: center;
 }
 
+.containerCart_button_inactive button {
+  width: 300px;
+  height: 52px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  background-color: gray;
+  text-align: center;
+  pointer-events: none;
+}
+
 .containerCart_description {
   font-weight: 400;
   font-size: 16px;

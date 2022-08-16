@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import Navbar from "../components/Navbar";
 import { ProductContainer } from "../components/ProductContainer";
 import { Query } from "@apollo/react-components";
 import { gql } from "@apollo/client";
+import { withRouter } from "react-router";
+import { useParams } from "react-router-dom";
 
 const GET_PRODUCT = gql`
   query getProduct($productId: String!) {
@@ -12,6 +13,7 @@ const GET_PRODUCT = gql`
       brand
       gallery
       description
+      inStock
       prices {
         amount
         currency {
@@ -34,24 +36,19 @@ const GET_PRODUCT = gql`
 `;
 
 export class PDP extends Component {
-  state = { currencyIndex: 0 };
-
-  setCurrency = (currencyIndex) => {
-    this.setState({ currencyIndex: currencyIndex });
-  };
   render() {
+    const url = window.location.href;
+    const id = url.split("/")[3];
     return (
-      <Query query={GET_PRODUCT} variables={{ productId: "apple-imac-2021" }}>
+      <Query query={GET_PRODUCT} variables={{ productId: id }}>
         {({ data, loading, error }) => {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>{error}</p>;
-          console.log(data);
           return (
             <div>
-              <Navbar setCurrency={this.setCurrency} />
               <ProductContainer
                 product={data.product}
-                currencyIndex={this.state.currencyIndex}
+                currencyIndex={this.props.currencyIndex}
               />
             </div>
           );

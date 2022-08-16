@@ -9,6 +9,9 @@ import parse from "html-react-parser";
 export class ProductContainer extends Component {
   render() {
     const price = this.props.product.prices[this.props.currencyIndex];
+    const inStock = this.props.product.inStock
+      ? "containerCart_button"
+      : "containerCart_button_inactive";
     return (
       <div className="containerCart">
         <ProductGallery gallery={this.props.product.gallery} />
@@ -23,7 +26,7 @@ export class ProductContainer extends Component {
                 <ProductProperty attribute={attribute} key={attribute.id} />
               );
             } else {
-              return <ProductColor attributes={attribute} key={attribute.id} />;
+              return <ProductColor attribute={attribute} key={attribute.id} />;
             }
           })}
           <div className="containerCart_price">
@@ -33,7 +36,7 @@ export class ProductContainer extends Component {
               {price.amount}
             </p>
           </div>
-          <div className="containerCart_button">
+          <div className={inStock}>
             <button>ADD TO CART</button>
           </div>
           <div className="containerCart_description">

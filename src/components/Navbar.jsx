@@ -5,6 +5,7 @@ import "./navbar.scss";
 import arrow from "../assets/arrow.svg";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/react-components";
+import { Link } from "react-router-dom";
 
 const query = gql`
   {
@@ -37,10 +38,11 @@ export class Navbar extends Component {
             <nav className="navbar">
               <ul className="navbar_links">
                 {data.categories.map((el) => (
-                  <li key={el.name} onClick={() => this.setCategory(el.name)}>
-                    {/* TODO refactor a to button */}
-                    <a>{el.name.toUpperCase()}</a>
-                  </li>
+                  <Link to="/" key={el.name}>
+                    <li onClick={() => this.setCategory(el.name)}>
+                      {el.name.toUpperCase()}
+                    </li>
+                  </Link>
                 ))}
               </ul>
               {/* TODO implement homepage link through logo */}
