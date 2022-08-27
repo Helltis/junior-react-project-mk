@@ -29,6 +29,8 @@ export class Navbar extends Component {
   };
 
   render() {
+    const cartBadge =
+      this.props.cartItemsQuantity === 0 ? "" : "navbar_cart_icon";
     return (
       <Query query={query}>
         {({ data, loading, error }) => {
@@ -45,7 +47,6 @@ export class Navbar extends Component {
                   </Link>
                 ))}
               </ul>
-              {/* TODO implement homepage link through logo */}
               <a href="/" className="navbar_logo">
                 <img src={logo} alt="store logo" />
               </a>
@@ -72,8 +73,8 @@ export class Navbar extends Component {
                 </div>
                 <Link to="/cart">
                   <div
-                    className="navbar_cart_icon"
-                    value={`${this.props.cartItemsQuantity}`}
+                    className={cartBadge}
+                    value={this.props.cartItemsQuantity}
                   >
                     <img src={emptyCartIcon} alt="cart overlay" />
                   </div>

@@ -58,7 +58,10 @@ export class App extends Component {
               />
             }
           />
-          <Route path="cart" element={<Cart />} />
+          <Route
+            path="cart"
+            element={<Cart cartItems={this.state.cartItems} />}
+          />
           <Route path="product">
             <Route
               path=":productId"
