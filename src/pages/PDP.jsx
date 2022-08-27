@@ -38,7 +38,8 @@ const GET_PRODUCT = gql`
 export class PDP extends Component {
   render() {
     const url = window.location.href;
-    const id = url.split("/")[3];
+    const id = url.split("/")[4];
+    console.log(id);
     return (
       <Query query={GET_PRODUCT} variables={{ productId: id }}>
         {({ data, loading, error }) => {
@@ -49,6 +50,7 @@ export class PDP extends Component {
               <ProductContainer
                 product={data.product}
                 currencyIndex={this.props.currencyIndex}
+                onAdd={this.props.onAdd}
               />
             </div>
           );

@@ -25,15 +25,21 @@
   padding: 0.5rem 0.5rem 1.5rem 0.5rem;
 }
 
+.navbar_select select:active ~ .navbar_select_icon {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+}
+
 .navbar_links li:hover {
   color: var(--color-button);
   border-bottom: 2px solid var(--color-button);
 }
 
-.navbar_links li:active {
-  color: var(--color-button);
-  border-bottom: 2px solid var(--color-button);
-}
+// .navbar_links li:active {
+//   color: var(--color-button);
+//   border-bottom: 2px solid var(--color-button);
+// }
 
 .navbar_icons {
   flex: 2;
@@ -77,6 +83,21 @@
   transition: all 0.5s ease;
 }
 
-.navbar_select select:active ~ .navbar_select_icon {
-  transform: rotate(180deg);
+.navbar_cart_icon {
+  position: relative;
+}
+
+.navbar_cart_icon::after {
+  content: attr(value);
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  background: #1d1f22;
+  color: rgb(255, 255, 255);
+  border-radius: 50%;
+  position: absolute;
+  left: 15px;
+  top: -5px;
+  text-align: center;
+  font-weight: 700;
 }

@@ -70,8 +70,14 @@ export class Navbar extends Component {
                   {/* FIXME fix arrow flip on all browsers */}
                   <img src={arrow} className="navbar_select_icon" alt="icon" />
                 </div>
-                {/* TODO cart item number */}
-                <img src={emptyCartIcon} alt="cart overlay" />
+                <Link to="/cart">
+                  <div
+                    className="navbar_cart_icon"
+                    value={`${this.props.cartItemsQuantity}`}
+                  >
+                    <img src={emptyCartIcon} alt="cart overlay" />
+                  </div>
+                </Link>
               </div>
             </nav>
           );

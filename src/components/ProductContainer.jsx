@@ -37,7 +37,9 @@ export class ProductContainer extends Component {
             </p>
           </div>
           <div className={inStock}>
-            <button>ADD TO CART</button>
+            <button onClick={() => this.props.onAdd(this.props.product)}>
+              ADD TO CART
+            </button>
           </div>
           <div className="containerCart_description">
             {parse(this.props.product.description)}

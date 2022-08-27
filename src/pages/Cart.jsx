@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import CartComponents from "../components/CartComponents";
-import Navbar from "../components/Navbar";
 import { ProductTitle } from "../components/ProductTitle";
 import { ProductProperty } from "../components/ProductProperty";
 import { ProductColor } from "../components/ProductColor";
@@ -10,7 +9,6 @@ export class Cart extends Component {
   render() {
     return (
       <div className="pageCart">
-        <Navbar />
         <p className="pageCart_title">CART</p>
         <span className="pageCart_divider" />
         <div className="pageCart_item">

@@ -7,9 +7,13 @@ export class Product extends Component {
     const isInStock = this.props.product.inStock
       ? "product"
       : "product_outOfStock";
+    console.log(this.props.product);
     return (
       <div className={isInStock}>
-        <div className="product_cartIcon">
+        <div
+          className="product_cartIcon"
+          onClick={() => this.props.onAdd(this.props.product)}
+        >
           <img src={cartIcon} alt="cart icon" />
         </div>
         <img

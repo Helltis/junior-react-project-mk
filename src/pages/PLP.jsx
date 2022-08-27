@@ -26,7 +26,6 @@ const GET_PRODUCTS = gql`
     }
   }
 `;
-// TODO out of stock should be clickable
 export class Category extends Component {
   render() {
     return (
@@ -43,10 +42,11 @@ export class Category extends Component {
                 <h1 className="category_title">{data.category.name}</h1>
                 <div className="category_products">
                   {data.category.products.map((product) => (
-                    <Link to={`/${product.id}`} key={product.id}>
+                    <Link to={`/product/${product.id}`} key={product.id}>
                       <Product
                         product={product}
                         currencyIndex={this.props.currencyIndex}
+                        onAdd={this.props.onAdd}
                       />
                     </Link>
                   ))}
