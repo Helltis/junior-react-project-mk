@@ -33,3 +33,8 @@
   right: 10%;
   bottom: 6%;
 }
+
+.cartComponents_preview_buttons_disabled {
+  visibility: hidden;
+  pointer-events: none;
+}

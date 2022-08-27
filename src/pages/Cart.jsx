@@ -6,6 +6,10 @@ import { ProductColor } from "../components/ProductColor";
 import "./cart.scss";
 
 export class Cart extends Component {
+  handleReload = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
   render() {
     const isEmpty = this.props.cartItems.length === 0 ? true : false;
     let cartItems;
@@ -14,16 +18,43 @@ export class Cart extends Component {
     } else {
       cartItems = (
         <React.Fragment>
-          <div className="pageCart_item">
-            <div className="pageCart_selectedProps">
-              <ProductTitle />
-              <span>$50.00</span>
-              <ProductProperty />
-              <ProductColor />
-            </div>
-            <CartComponents />
-          </div>
-          <span className="pageCart_divider" />
+          {this.props.cartItems.map((item) => (
+            <React.Fragment key={item.id}>
+              <div className="pageCart_item">
+                <div className="pageCart_selectedProps">
+                  <ProductTitle brand={item.brand} name={item.name} />
+                  <span>
+                    {item.prices[this.props.currencyIndex].currency.symbol}
+                    {item.prices[this.props.currencyIndex].amount}
+                  </span>
+                  {item.attributes.map((attribute) => {
+                    if (attribute.type === "text") {
+                      return (
+                        <ProductProperty
+                          attribute={attribute}
+                          key={attribute.id}
+                        />
+                      );
+                    } else {
+                      return (
+                        <ProductColor
+                          attribute={attribute}
+                          key={attribute.id}
+                        />
+                      );
+                    }
+                  })}
+                </div>
+                <CartComponents
+                  gallery={item.gallery}
+                  quantity={item.quantity}
+                  onAdd={this.props.onAdd}
+                  item={item}
+                />
+              </div>
+              <span className="pageCart_divider" />
+            </React.Fragment>
+          ))}
           <div className="pageCart_summary">
             <div className="pageCart_summary_static">
               <p>Tax 21%:</p>
@@ -36,7 +67,12 @@ export class Cart extends Component {
               <p>$200.00</p>
             </div>
           </div>
-          <button className="pageCart_order">ORDER</button>
+          <button
+            className="pageCart_order"
+            onClick={() => this.handleReload()}
+          >
+            ORDER
+          </button>
         </React.Fragment>
       );
     }

@@ -7,12 +7,30 @@ import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 
 export class App extends Component {
+  // TODO better state management solution
   state = {
-    currencyIndex: 0,
+    currencyIndex:
+      JSON.parse(window.localStorage.getItem("currencyIndex")) || 0,
     category: "all",
-    cartItems: [],
-    cartItemsQuantity: 0,
+    cartItems: JSON.parse(window.localStorage.getItem("cartItems")) || [],
+    cartItemsQuantity:
+      JSON.parse(window.localStorage.getItem("cartItemsQuantity")) || 0,
   };
+
+  componentDidUpdate() {
+    window.localStorage.setItem(
+      "currencyIndex",
+      JSON.stringify(this.state.currencyIndex)
+    );
+    window.localStorage.setItem(
+      "cartItems",
+      JSON.stringify(this.state.cartItems)
+    );
+    window.localStorage.setItem(
+      "cartItemsQuantity",
+      JSON.stringify(this.state.cartItemsQuantity)
+    );
+  }
 
   setCurrency = (currencyIndex) => {
     this.setState({ currencyIndex: currencyIndex });
@@ -60,7 +78,13 @@ export class App extends Component {
           />
           <Route
             path="cart"
-            element={<Cart cartItems={this.state.cartItems} />}
+            element={
+              <Cart
+                cartItems={this.state.cartItems}
+                currencyIndex={this.state.currencyIndex}
+                onAdd={this.onAdd}
+              />
+            }
           />
           <Route path="product">
             <Route

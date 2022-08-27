@@ -22,6 +22,16 @@ const GET_PRODUCTS = gql`
           }
           amount
         }
+        attributes {
+          id
+          name
+          type
+          items {
+            displayValue
+            value
+            id
+          }
+        }
       }
     }
   }

@@ -4,32 +4,54 @@ import plus from "../assets/plus-square.svg";
 import left from "../assets/arrow-left.svg";
 import right from "../assets/arrow-right.svg";
 import "./cartComponents.scss";
-import product from "../assets/product.png";
-import product2 from "../assets/product2.png";
-import product3 from "../assets/product3.png";
-import product4 from "../assets/product4.png";
 
 export class CartComponents extends Component {
-  arrImg = [product, product2, product3, product4];
   state = {
-    quantity: 1,
-    image: this.arrImg[0],
+    imgIndex: 0,
+  };
+  glrLen = this.props.gallery.length;
+  imgFwd = () => {
+    if (this.state.imgIndex < this.glrLen - 1) {
+      this.setState({ imgIndex: this.state.imgIndex + 1 });
+    } else {
+      this.setState({ imgIndex: 0 });
+    }
+  };
+  imgBck = () => {
+    if (this.state.imgIndex > 0) {
+      this.setState({ imgIndex: this.state.imgIndex - 1 });
+    } else {
+      this.setState({ imgIndex: this.glrLen - 1 });
+    }
   };
   render() {
+    const imgArrows =
+      this.glrLen > 1
+        ? "cartComponents_preview_buttons"
+        : "cartComponents_preview_buttons_disabled";
     return (
       <div className="cartComponents">
         <div className="cartComponents_quantity">
-          <input type="image" src={plus} alt="plus" />
+          {/* TODO use item quantity not whole item */}
+          <input
+            type="image"
+            src={plus}
+            alt="plus"
+            onClick={() => this.props.onAdd(this.props.item)}
+          />
           <p className="cartComponents_quantity_number">
-            {this.state.quantity}
+            {this.props.quantity}
           </p>
           <input type="image" src={minus} alt="minus" />
         </div>
         <div className="cartComponents_preview">
-          <img src={this.state.image} alt="product preview" />
-          <div className="cartComponents_preview_buttons">
-            <input type="image" src={left} alt="left" />
-            <input type="image" src={right} alt="right" />
+          <img
+            src={this.props.gallery[this.state.imgIndex]}
+            alt="product preview"
+          />
+          <div className={imgArrows}>
+            <input type="image" src={left} alt="left" onClick={this.imgBck} />
+            <input type="image" src={right} alt="right" onClick={this.imgFwd} />
           </div>
         </div>
       </div>
