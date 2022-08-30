@@ -25,22 +25,10 @@
   padding: 0.5rem 0.5rem 1.5rem 0.5rem;
 }
 
-.navbar_select select:active ~ .navbar_select_icon {
-  transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-}
-
 .navbar_links li:hover {
   color: var(--color-button);
   border-bottom: 2px solid var(--color-button);
 }
-
-// .navbar_links li:active {
-//   color: var(--color-button);
-//   border-bottom: 2px solid var(--color-button);
-// }
-
 .navbar_icons {
   flex: 2;
   display: flex;
@@ -56,31 +44,6 @@
   flex: 1;
   padding: 0;
   justify-content: center;
-}
-
-.navbar_select {
-  position: relative;
-}
-
-.navbar_select select {
-  all: unset;
-  border: none;
-  background-color: var(--color-bg);
-  font-weight: 500;
-  font-size: 18px;
-  cursor: pointer;
-  outline: none;
-}
-
-.navbar_select_icon {
-  position: absolute;
-  top: 4px;
-  right: 1px;
-  background: var(--color-bg);
-  height: 12px;
-  width: 12px;
-  pointer-events: none;
-  transition: all 0.5s ease;
 }
 
 .navbar_cart_icon {

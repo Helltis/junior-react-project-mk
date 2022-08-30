@@ -10,6 +10,7 @@ export class ProductProperty extends Component {
         </p>
         <div className="productProperty_buttons">
           {/* FIXME yes - no ID */}
+          {/* FIXME same attribute id's */}
           {this.props.attribute.items.map((item) => (
             <React.Fragment key={item.id}>
               <input

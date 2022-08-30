@@ -6,6 +6,7 @@ import arrow from "../assets/arrow.svg";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/react-components";
 import { Link } from "react-router-dom";
+import CurrencySelect from "./CurrencySelect";
 
 const query = gql`
   {
@@ -22,10 +23,6 @@ const query = gql`
 export class Navbar extends Component {
   setCategory = (cat) => {
     this.props.setCategory(cat);
-  };
-
-  setCurrency = (curr) => {
-    this.props.setCurrency(curr);
   };
 
   render() {
@@ -51,26 +48,13 @@ export class Navbar extends Component {
                 <img src={logo} alt="store logo" />
               </a>
               <div className="navbar_icons">
-                <div className="navbar_select">
-                  {/* getting index of currency to change state on currency switch */}
-                  <select
-                    onChange={(e) =>
-                      this.setCurrency(
-                        data.currencies.findIndex(
-                          (price) => price.label === e.target.value
-                        )
-                      )
-                    }
-                  >
-                    {data.currencies.map((el) => (
-                      <option value={el.label} key={el.label}>
-                        {el.symbol} {el.label}
-                      </option>
-                    ))}
-                  </select>
-                  {/* FIXME fix arrow flip on all browsers */}
-                  <img src={arrow} className="navbar_select_icon" alt="icon" />
-                </div>
+                <CurrencySelect
+                  setCurrency={this.props.setCurrency}
+                  currencies={data.currencies}
+                  currencyIndex={this.props.currencyIndex}
+                />
+                {/* FIXME fix arrow flip on all browsers */}
+                {/* <img src={arrow} className="navbar_select_icon" alt="icon" /> */}
                 <Link to="/cart">
                   <div
                     className={cartBadge}

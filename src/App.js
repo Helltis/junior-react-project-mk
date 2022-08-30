@@ -64,6 +64,7 @@ export class App extends Component {
           setCategory={this.setCategory}
           setCurrency={this.setCurrency}
           cartItemsQuantity={this.state.cartItemsQuantity}
+          currencyIndex={this.state.currencyIndex}
         />
         <Routes>
           <Route
