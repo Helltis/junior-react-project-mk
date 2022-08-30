@@ -56,6 +56,22 @@ export class App extends Component {
     this.setState({ cartItemsQuantity: this.state.cartItemsQuantity + 1 });
   };
 
+  onRemove = (product) => {
+    const exist = this.state.cartItems.find((x) => x.id === product.id);
+    if (exist.quantity === 1) {
+      this.setState({
+        cartItems: this.state.cartItems.filter((x) => x.id !== product.id),
+      });
+    } else {
+      this.setState({
+        cartItems: this.state.cartItems.map((x) =>
+          x.id === product.id ? { ...exist, quantity: exist.quantity - 1 } : x
+        ),
+      });
+    }
+    this.setState({ cartItemsQuantity: this.state.cartItemsQuantity - 1 });
+  };
+
   render() {
     console.log(this.state);
     return (
@@ -84,6 +100,7 @@ export class App extends Component {
                 cartItems={this.state.cartItems}
                 currencyIndex={this.state.currencyIndex}
                 onAdd={this.onAdd}
+                onRemove={this.onRemove}
               />
             }
           />
