@@ -49,6 +49,7 @@ export class Cart extends Component {
                   gallery={item.gallery}
                   quantity={item.quantity}
                   onAdd={this.props.onAdd}
+                  onRemove={this.props.onRemove}
                   item={item}
                 />
               </div>

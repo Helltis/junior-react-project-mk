@@ -42,7 +42,12 @@ export class CartComponents extends Component {
           <p className="cartComponents_quantity_number">
             {this.props.quantity}
           </p>
-          <input type="image" src={minus} alt="minus" />
+          <input
+            type="image"
+            src={minus}
+            alt="minus"
+            onClick={() => this.props.onRemove(this.props.item)}
+          />
         </div>
         <div className="cartComponents_preview">
           <img
