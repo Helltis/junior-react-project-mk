@@ -13,8 +13,6 @@ export class CurrencySelect extends Component {
   };
 
   render() {
-    console.log(this.state);
-    console.log(this.props.currencies);
     return (
       <div className="currency_select">
         <div className="select_menu">

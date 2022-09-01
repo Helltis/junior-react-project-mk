@@ -7,7 +7,48 @@ import { ProductColor } from "./ProductColor";
 import parse from "html-react-parser";
 
 export class ProductContainer extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.selectedAttributes = this.setDefaultAttributes(this.props.product);
+  // }
+  selectedAttributes = {};
+  // componentDidMount() {
+  //   this.selectedAttributes = this.setDefaultAttributes(this.props.product);
+  // }
+  // setDefaultAttributes = (product) => {
+  //   let attr = {};
+  //   product.attributes.forEach(
+  //     (attribute) =>
+  //       (attr = {
+  //         ...attr,
+  //         [attribute.name]: attribute.items[0].id,
+  //       })
+  //   );
+  //   return attr;
+  // };
+
+  setSelectedAttributes = (attrName, attrId) => {
+    this.selectedAttributes = {
+      ...this.selectedAttributes,
+      [attrName]: attrId,
+    };
+    console.log(this.selectedAttributes);
+  };
+
+  addToCart = (product) => {
+    if (Object.keys(this.selectedAttributes).length === 0) {
+      // TODO create popup
+      return null;
+    } else {
+      const productWithAttributes = {
+        ...product,
+        selectedAttributes: this.selectedAttributes,
+      };
+      this.props.onAdd(productWithAttributes);
+    }
+  };
   render() {
+    console.log(this.selectedAttributes);
     const price = this.props.product.prices[this.props.currencyIndex];
     const inStock = this.props.product.inStock
       ? "containerCart_button"
@@ -23,7 +64,11 @@ export class ProductContainer extends Component {
           {this.props.product.attributes.map((attribute) => {
             if (attribute.type === "text") {
               return (
-                <ProductProperty attribute={attribute} key={attribute.id} />
+                <ProductProperty
+                  attribute={attribute}
+                  key={attribute.id}
+                  setSelectedAttributes={this.setSelectedAttributes}
+                />
               );
             } else {
               return <ProductColor attribute={attribute} key={attribute.id} />;
@@ -37,7 +82,10 @@ export class ProductContainer extends Component {
             </p>
           </div>
           <div className={inStock}>
-            <button onClick={() => this.props.onAdd(this.props.product)}>
+            <button onClick={() => this.addToCart(this.props.product)}>
+              {/* {
+              product = {...this.props.product, selectedAttributes: this.selectedAttributes}
+            } */}
               ADD TO CART
             </button>
           </div>

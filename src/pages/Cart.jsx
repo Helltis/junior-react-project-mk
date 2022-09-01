@@ -10,12 +10,30 @@ export class Cart extends Component {
     localStorage.clear();
     window.location.reload();
   };
+  calculateTotal(products) {
+    let total = 0;
+    products.forEach((product) => {
+      total =
+        total +
+        product.prices[this.props.currencyIndex].amount * product.quantity;
+    });
+    return Number(total.toFixed(2));
+  }
+  calculateTax(total) {
+    return Number(((total / 100) * 21).toFixed(2));
+  }
   render() {
     const isEmpty = this.props.cartItems.length === 0 ? true : false;
     let cartItems;
     if (isEmpty) {
       cartItems = <h1>Your cart is empty</h1>;
     } else {
+      const totalPrice = this.calculateTotal(this.props.cartItems);
+      const tax = this.calculateTax(totalPrice);
+      const withTax = (totalPrice + tax).toFixed(2);
+      const currencySymbol =
+        this.props.cartItems[0].prices[this.props.currencyIndex].currency
+          .symbol;
       cartItems = (
         <React.Fragment>
           {this.props.cartItems.map((item) => (
@@ -24,8 +42,11 @@ export class Cart extends Component {
                 <div className="pageCart_selectedProps">
                   <ProductTitle brand={item.brand} name={item.name} />
                   <span>
-                    {item.prices[this.props.currencyIndex].currency.symbol}
-                    {item.prices[this.props.currencyIndex].amount}
+                    {currencySymbol}
+                    {(
+                      item.prices[this.props.currencyIndex].amount *
+                      item.quantity
+                    ).toFixed(2)}
                   </span>
                   {item.attributes.map((attribute) => {
                     if (attribute.type === "text") {
@@ -33,6 +54,7 @@ export class Cart extends Component {
                         <ProductProperty
                           attribute={attribute}
                           key={attribute.id}
+                          selected={item.selectedAttributes}
                         />
                       );
                     } else {
@@ -63,9 +85,9 @@ export class Cart extends Component {
               <p style={{ fontWeight: 500 }}>Total:</p>
             </div>
             <div className="pageCart_summary_dynamic">
-              <p>$42.00</p>
-              <p>2</p>
-              <p>$200.00</p>
+              <p>{`${currencySymbol}${tax}`}</p>
+              <p>{this.props.quantity}</p>
+              <p>{`${currencySymbol}${withTax}`}</p>
             </div>
           </div>
           <button

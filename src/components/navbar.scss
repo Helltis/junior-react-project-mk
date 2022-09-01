@@ -1,10 +1,14 @@
 .navbar {
+  position: sticky;
+  top: 0;
   color: var(--color-text);
+  background-color: var(--color-bg);
   display: flex;
   justify-content: space-between;
   padding-top: 1rem;
   font-size: 16px;
   font-weight: 600;
+  z-index: 1000;
 }
 
 .navbar_links {

@@ -7,7 +7,6 @@ import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 
 export class App extends Component {
-  // TODO better state management solution
   state = {
     currencyIndex:
       JSON.parse(window.localStorage.getItem("currencyIndex")) || 0,
@@ -41,7 +40,7 @@ export class App extends Component {
   };
 
   onAdd = (product) => {
-    const exists = this.state.cartItems.find((x) => x.id === product.id);
+    const exists = this.findProduct(product);
     if (exists) {
       this.setState({
         cartItems: this.state.cartItems.map((x) =>
@@ -53,24 +52,37 @@ export class App extends Component {
         cartItems: [...this.state.cartItems, { ...product, quantity: 1 }],
       });
     }
-    this.setState({ cartItemsQuantity: this.state.cartItemsQuantity + 1 });
+    this.setState({
+      cartItemsQuantity: this.state.cartItemsQuantity + 1,
+    });
   };
 
   onRemove = (product) => {
-    const exist = this.state.cartItems.find((x) => x.id === product.id);
-    if (exist.quantity === 1) {
+    const exists = this.findProduct(product);
+    if (exists.quantity === 1) {
       this.setState({
         cartItems: this.state.cartItems.filter((x) => x.id !== product.id),
       });
     } else {
       this.setState({
         cartItems: this.state.cartItems.map((x) =>
-          x.id === product.id ? { ...exist, quantity: exist.quantity - 1 } : x
+          x.id === product.id ? { ...exists, quantity: exists.quantity - 1 } : x
         ),
       });
     }
-    this.setState({ cartItemsQuantity: this.state.cartItemsQuantity - 1 });
+    this.setState({
+      cartItemsQuantity: this.state.cartItemsQuantity - 1,
+    });
   };
+
+  productTotalPrice = (product) => {
+    return product.quantity * product.prices[this.state.currencyIndex].amount;
+  };
+
+  findProduct = (product) =>
+    this.state.cartItems.find(
+      (x) => JSON.stringify(x) === JSON.stringify(product)
+    );
 
   render() {
     console.log(this.state);
@@ -101,6 +113,7 @@ export class App extends Component {
                 currencyIndex={this.state.currencyIndex}
                 onAdd={this.onAdd}
                 onRemove={this.onRemove}
+                quantity={this.state.cartItemsQuantity}
               />
             }
           />
