@@ -49,22 +49,3 @@
   padding: 0;
   justify-content: center;
 }
-
-.navbar_cart_icon {
-  position: relative;
-}
-
-.navbar_cart_icon::after {
-  content: attr(value);
-  width: 20px;
-  height: 20px;
-  font-size: 14px;
-  background: #1d1f22;
-  color: rgb(255, 255, 255);
-  border-radius: 50%;
-  position: absolute;
-  left: 15px;
-  top: -5px;
-  text-align: center;
-  font-weight: 700;
-}

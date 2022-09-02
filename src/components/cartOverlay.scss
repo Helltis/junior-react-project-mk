@@ -1,0 +1,144 @@
+.overlay_cart_total {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.overlay_cart_icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.overlay_cart_icon::after {
+  content: attr(value);
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  background: #1d1f22;
+  color: rgb(255, 255, 255);
+  border-radius: 50%;
+  position: absolute;
+  left: 15px;
+  top: -5px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.overlay_cart {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  right: 10px;
+  top: 70px;
+  background-color: var(--color-bg);
+  padding: 32px 16px;
+  font-size: 16px;
+  align-items: flex-start;
+}
+
+.overlay_cart_properties {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: 700;
+}
+
+.quantity {
+  font-weight: 500;
+}
+
+.overlay_cart_items {
+  max-height: 550px;
+  min-width: 300px;
+  overflow-y: auto;
+}
+
+.overlay_cart_item {
+  display: flex;
+  margin: 40px 0;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.overlay_cart_price {
+  font-weight: 500;
+}
+
+.overlay_cart {
+  & .productTitle {
+    font-size: 16px;
+    gap: 10px;
+    & .productTitle_brand {
+      font-weight: 300;
+    }
+  }
+  & .productProperty_buttons_label {
+    display: flex;
+    border: 1px solid var(--color-text);
+    background: var(--color-bg);
+    width: 24px;
+    height: 24px;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-source);
+    font-weight: 400;
+    font-size: 14px;
+    transition: background 0.1s;
+    pointer-events: none;
+  }
+  // FIXME font weight not changing
+  & .productProperty_text {
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  & .cartComponents {
+    height: 190px;
+    gap: 10px;
+    & .cartComponents_quantity {
+      & input {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    & .cartComponents_preview {
+      & img {
+        width: 120px;
+      }
+    }
+    & .cartComponents_quantity_number {
+      font-size: 16px;
+    }
+  }
+}
+
+.overlay_cart_buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.viewBag {
+  display: flex;
+  width: 140px;
+  height: 43px;
+  border: 1px solid #1d1f22;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkout {
+  display: flex;
+  width: 140px;
+  height: 43px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-button);
+  border: 1px solid var(--color-button);
+  color: #ffffff;
+}

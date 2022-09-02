@@ -5,6 +5,7 @@ import { PDP } from "./pages/PDP";
 import Cart from "./pages/Cart";
 import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
+import _ from "lodash";
 
 export class App extends Component {
   state = {
@@ -41,10 +42,13 @@ export class App extends Component {
 
   onAdd = (product) => {
     const exists = this.findProduct(product);
+    console.log(exists);
     if (exists) {
       this.setState({
         cartItems: this.state.cartItems.map((x) =>
-          x.id === product.id ? { ...exists, quantity: exists.quantity + 1 } : x
+          _.isEqual(x, exists)
+            ? { ...exists, quantity: exists.quantity + 1 }
+            : x
         ),
       });
     } else {
@@ -61,12 +65,14 @@ export class App extends Component {
     const exists = this.findProduct(product);
     if (exists.quantity === 1) {
       this.setState({
-        cartItems: this.state.cartItems.filter((x) => x.id !== product.id),
+        cartItems: this.state.cartItems.filter((x) => !_.isEqual(x, exists)),
       });
     } else {
       this.setState({
         cartItems: this.state.cartItems.map((x) =>
-          x.id === product.id ? { ...exists, quantity: exists.quantity - 1 } : x
+          _.isEqual(x, exists)
+            ? { ...exists, quantity: exists.quantity - 1 }
+            : x
         ),
       });
     }
@@ -81,7 +87,9 @@ export class App extends Component {
 
   findProduct = (product) =>
     this.state.cartItems.find(
-      (x) => JSON.stringify(x) === JSON.stringify(product)
+      (x) =>
+        x.name === product.name &&
+        _.isEqual(x.selectedAttributes, product.selectedAttributes)
     );
 
   render() {
@@ -93,6 +101,9 @@ export class App extends Component {
           setCurrency={this.setCurrency}
           cartItemsQuantity={this.state.cartItemsQuantity}
           currencyIndex={this.state.currencyIndex}
+          cartItems={this.state.cartItems}
+          onAdd={this.onAdd}
+          onRemove={this.onRemove}
         />
         <Routes>
           <Route

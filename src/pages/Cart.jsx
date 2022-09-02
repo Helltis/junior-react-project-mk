@@ -4,7 +4,8 @@ import { ProductTitle } from "../components/ProductTitle";
 import { ProductProperty } from "../components/ProductProperty";
 import { ProductColor } from "../components/ProductColor";
 import "./cart.scss";
-
+import nextId from "react-id-generator";
+//TODO fix omegabug with managing items in cart
 export class Cart extends Component {
   handleReload = () => {
     localStorage.clear();
@@ -37,7 +38,7 @@ export class Cart extends Component {
       cartItems = (
         <React.Fragment>
           {this.props.cartItems.map((item) => (
-            <React.Fragment key={item.id}>
+            <React.Fragment key={nextId()}>
               <div className="pageCart_item">
                 <div className="pageCart_selectedProps">
                   <ProductTitle brand={item.brand} name={item.name} />

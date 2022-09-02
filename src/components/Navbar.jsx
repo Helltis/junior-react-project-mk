@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import logo from "../assets/logo.svg";
 import emptyCartIcon from "../assets/emptyCartIcon.svg";
 import "./navbar.scss";
-import arrow from "../assets/arrow.svg";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/react-components";
 import { Link } from "react-router-dom";
 import CurrencySelect from "./CurrencySelect";
+import CartOverlay from "./CartOverlay";
 
 const query = gql`
   {
@@ -26,8 +26,6 @@ export class Navbar extends Component {
   };
 
   render() {
-    const cartBadge =
-      this.props.cartItemsQuantity === 0 ? "" : "navbar_cart_icon";
     return (
       <Query query={query}>
         {({ data, loading, error }) => {
@@ -53,16 +51,21 @@ export class Navbar extends Component {
                   currencies={data.currencies}
                   currencyIndex={this.props.currencyIndex}
                 />
-                {/* FIXME fix arrow flip on all browsers */}
-                {/* <img src={arrow} className="navbar_select_icon" alt="icon" /> */}
-                <Link to="/cart">
+                <CartOverlay
+                  cartItemsQuantity={this.props.cartItemsQuantity}
+                  cartItems={this.props.cartItems}
+                  currencyIndex={this.props.currencyIndex}
+                  onAdd={this.props.onAdd}
+                  onRemove={this.props.onRemove}
+                />
+                {/* <Link to="/cart">
                   <div
                     className={cartBadge}
                     value={this.props.cartItemsQuantity}
                   >
                     <img src={emptyCartIcon} alt="cart overlay" />
                   </div>
-                </Link>
+                </Link> */}
               </div>
             </nav>
           );

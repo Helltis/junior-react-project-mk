@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./productTitle.scss";
-
+// TODO remove this component
 export class ProductTitle extends Component {
   render() {
     return (

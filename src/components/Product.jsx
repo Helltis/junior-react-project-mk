@@ -12,8 +12,10 @@ export class Product extends Component {
         <div
           className="product_cartIcon"
           onClick={(e) => {
-            e.preventDefault();
-            this.props.onAdd(this.props.product);
+            if (this.props.product.attributes.length === 0) {
+              e.preventDefault();
+              this.props.onAdd(this.props.product);
+            }
           }}
         >
           <img src={cartIcon} alt="cart icon" />

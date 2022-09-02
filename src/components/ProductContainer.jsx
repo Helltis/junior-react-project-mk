@@ -36,7 +36,9 @@ export class ProductContainer extends Component {
   };
 
   addToCart = (product) => {
-    if (Object.keys(this.selectedAttributes).length === 0) {
+    if (
+      Object.keys(this.selectedAttributes).length < product.attributes.length
+    ) {
       // TODO create popup
       return null;
     } else {
@@ -71,6 +73,9 @@ export class ProductContainer extends Component {
                 />
               );
             } else {
+              {
+                /* TODO merge color property */
+              }
               return <ProductColor attribute={attribute} key={attribute.id} />;
             }
           })}
