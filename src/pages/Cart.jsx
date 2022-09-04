@@ -5,7 +5,7 @@ import { ProductProperty } from "../components/ProductProperty";
 import { ProductColor } from "../components/ProductColor";
 import "./cart.scss";
 import nextId from "react-id-generator";
-//TODO fix omegabug with managing items in cart
+
 export class Cart extends Component {
   handleReload = () => {
     localStorage.clear();

@@ -47,4 +47,14 @@
   width: 115px;
   right: -40px;
   z-index: 999;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -8,17 +8,28 @@ import { ProductColor } from "./ProductColor";
 import { CartComponents } from "./CartComponents";
 import { Link } from "react-router-dom";
 import nextId from "react-id-generator";
+import PopUp from "./PopUp";
 
-//TODO fix + - icons
-//FIXME total should be with tax
-//FIXME properties fit
 export class CartOverlay extends Component {
-  state = { selected: false };
+  state = { selected: false, active: false };
 
   setSelected = () => {
     this.setState({
       selected: !this.state.selected,
     });
+  };
+
+  createToast = () => {
+    if (!this.state.active) {
+      this.setState({
+        active: !this.state.active,
+      });
+      setTimeout(() => {
+        this.setState({
+          active: !this.state.active,
+        });
+      }, 2000);
+    }
   };
 
   calculateTotal(products) {
@@ -28,6 +39,7 @@ export class CartOverlay extends Component {
         total +
         product.prices[this.props.currencyIndex].amount * product.quantity;
     });
+    total += (total / 100) * 21;
     return Number(total.toFixed(2));
   }
 
@@ -46,10 +58,11 @@ export class CartOverlay extends Component {
         <div
           className={cartBadge}
           value={this.props.cartItemsQuantity}
-          onClick={() => this.setSelected()}
+          onClick={() => (isEmpty ? this.createToast() : this.setSelected())}
         >
           <img src={emptyCartIcon} alt="cart overlay" />
         </div>
+        <PopUp message="Your cart is empty" active={this.state.active} />
         {this.state.selected && (
           <>
             <OutsideClickHandler onOutsideClick={this.setSelected}>
@@ -129,9 +142,6 @@ export class CartOverlay extends Component {
                     </button>
                   </div>
                 </div>
-              )}
-              {isEmpty && (
-                <div className="overlay_cart">Your cart is empty.</div>
               )}
             </OutsideClickHandler>
             <div className="gray_background"></div>

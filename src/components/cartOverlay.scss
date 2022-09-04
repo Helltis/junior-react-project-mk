@@ -40,6 +40,7 @@
   padding: 0 16px;
   font-size: 16px;
   align-items: flex-start;
+  animation: fadeIn 0.2s;
 }
 
 .overlay_cart_properties {
@@ -169,11 +170,21 @@
 }
 
 .gray_background {
-  position: absolute;
-  width: 100vw;
-  height: calc(100vh - 69px);
   background: rgba(57, 55, 72, 0.22);
+  position: fixed;
   top: 69px;
-  left: -4rem;
-  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 500;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

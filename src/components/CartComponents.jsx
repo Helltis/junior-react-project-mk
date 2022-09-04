@@ -32,7 +32,6 @@ export class CartComponents extends Component {
     return (
       <div className="cartComponents">
         <div className="cartComponents_quantity">
-          {/* TODO use item quantity not whole item */}
           <input
             type="image"
             src={plus}

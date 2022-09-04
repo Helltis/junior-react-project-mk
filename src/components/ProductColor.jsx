@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./productColor.scss";
 import nextId from "react-id-generator";
 
-// FIXME white color on white background
 export class ProductColor extends Component {
   selected = this.props.selected
     ? this.props.selected[this.props.attribute.name]

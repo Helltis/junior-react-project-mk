@@ -5,27 +5,12 @@ import { ProductTitle } from "./ProductTitle";
 import { ProductProperty } from "./ProductProperty";
 import { ProductColor } from "./ProductColor";
 import parse from "html-react-parser";
+import PopUp from "./PopUp";
 
 export class ProductContainer extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.selectedAttributes = this.setDefaultAttributes(this.props.product);
-  // }
+  state = { active: false };
+
   selectedAttributes = {};
-  // componentDidMount() {
-  //   this.selectedAttributes = this.setDefaultAttributes(this.props.product);
-  // }
-  // setDefaultAttributes = (product) => {
-  //   let attr = {};
-  //   product.attributes.forEach(
-  //     (attribute) =>
-  //       (attr = {
-  //         ...attr,
-  //         [attribute.name]: attribute.items[0].id,
-  //       })
-  //   );
-  //   return attr;
-  // };
 
   setSelectedAttributes = (attrName, attrId) => {
     this.selectedAttributes = {
@@ -38,8 +23,17 @@ export class ProductContainer extends Component {
     if (
       Object.keys(this.selectedAttributes).length < product.attributes.length
     ) {
-      // TODO create popup
-      return null;
+      //Create toast if no attributes selected
+      if (!this.state.active) {
+        this.setState({
+          active: !this.state.active,
+        });
+        setTimeout(() => {
+          this.setState({
+            active: !this.state.active,
+          });
+        }, 2000);
+      }
     } else {
       const productWithAttributes = {
         ...product,
@@ -89,11 +83,12 @@ export class ProductContainer extends Component {
           </div>
           <div className={inStock}>
             <button onClick={() => this.addToCart(this.props.product)}>
-              {/* {
-              product = {...this.props.product, selectedAttributes: this.selectedAttributes}
-            } */}
               ADD TO CART
             </button>
+            <PopUp
+              active={this.state.active}
+              message="Please select attributes."
+            />
           </div>
           <div className="containerCart_description">
             {parse(this.props.product.description)}

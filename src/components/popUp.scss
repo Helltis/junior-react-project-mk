@@ -1,0 +1,40 @@
+.popup {
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  padding: 10px;
+  border-radius: 8px;
+  align-items: center;
+  text-align: center;
+  color: var(--color-bg);
+  font-weight: 700;
+}
+
+#show {
+  visibility: visible;
+  animation: fadeIn 0.5s, fadeOut 0.5s 1.5s;
+}
+
+#hide {
+  visibility: hidden;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

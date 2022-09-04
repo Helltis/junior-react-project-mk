@@ -1,3 +1,0 @@
-TODO 
-Refactor all css to scss.
-Data persistance on refresh
