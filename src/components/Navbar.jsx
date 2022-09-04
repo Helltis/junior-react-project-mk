@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import logo from "../assets/logo.svg";
-import emptyCartIcon from "../assets/emptyCartIcon.svg";
 import "./navbar.scss";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/react-components";
@@ -58,14 +57,6 @@ export class Navbar extends Component {
                   onAdd={this.props.onAdd}
                   onRemove={this.props.onRemove}
                 />
-                {/* <Link to="/cart">
-                  <div
-                    className={cartBadge}
-                    value={this.props.cartItemsQuantity}
-                  >
-                    <img src={emptyCartIcon} alt="cart overlay" />
-                  </div>
-                </Link> */}
               </div>
             </nav>
           );

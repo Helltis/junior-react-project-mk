@@ -32,7 +32,6 @@ export class ProductContainer extends Component {
       ...this.selectedAttributes,
       [attrName]: attrId,
     };
-    console.log(this.selectedAttributes);
   };
 
   addToCart = (product) => {
@@ -50,7 +49,6 @@ export class ProductContainer extends Component {
     }
   };
   render() {
-    console.log(this.selectedAttributes);
     const price = this.props.product.prices[this.props.currencyIndex];
     const inStock = this.props.product.inStock
       ? "containerCart_button"
@@ -73,10 +71,13 @@ export class ProductContainer extends Component {
                 />
               );
             } else {
-              {
-                /* TODO merge color property */
-              }
-              return <ProductColor attribute={attribute} key={attribute.id} />;
+              return (
+                <ProductColor
+                  attribute={attribute}
+                  key={attribute.id}
+                  setSelectedAttributes={this.setSelectedAttributes}
+                />
+              );
             }
           })}
           <div className="containerCart_price">

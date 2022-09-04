@@ -63,6 +63,7 @@ export class Cart extends Component {
                         <ProductColor
                           attribute={attribute}
                           key={attribute.id}
+                          selected={item.selectedAttributes}
                         />
                       );
                     }

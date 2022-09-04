@@ -3,23 +3,22 @@ import nextId from "react-id-generator";
 import "./productProperty.scss";
 
 export class ProductProperty extends Component {
+  selected = this.props.selected
+    ? this.props.selected[this.props.attribute.name]
+    : null;
   render() {
-    let selected;
-    if (this.props.selected) {
-      selected = this.props.selected[this.props.attribute.name];
-    }
     const name = nextId();
     return (
       <div className="productProperty">
         <p className="productProperty_text">
-          {`${this.props.attribute.name.toUpperCase()}:`}
+          {`${this.props.attribute.name}:`}
         </p>
         <div className="productProperty_buttons">
           {this.props.attribute.items.map((item) => {
             const id = nextId();
             return (
               <React.Fragment key={item.id}>
-                {item.id === selected ? (
+                {item.id === this.selected ? (
                   <input
                     className="productProperty_buttons_radio"
                     type="radio"

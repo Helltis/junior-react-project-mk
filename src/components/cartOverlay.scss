@@ -2,6 +2,11 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin-top: 10px;
+}
+
+.overlay_cart_title {
+  margin: 20px 0;
 }
 
 .overlay_cart_icon {
@@ -26,12 +31,13 @@
 
 .overlay_cart {
   position: absolute;
+  z-index: 1000;
   display: flex;
   flex-direction: column;
-  right: 10px;
-  top: 70px;
+  right: -20px;
+  top: 69px;
   background-color: var(--color-bg);
-  padding: 32px 16px;
+  padding: 0 16px;
   font-size: 16px;
   align-items: flex-start;
 }
@@ -70,38 +76,56 @@
 .overlay_cart {
   & .productTitle {
     font-size: 16px;
-    gap: 10px;
+    gap: 6px;
     & .productTitle_brand {
       font-weight: 300;
     }
   }
+
+  & .productProperty_buttons {
+    gap: 8px;
+  }
   & .productProperty_buttons_label {
-    display: flex;
-    border: 1px solid var(--color-text);
-    background: var(--color-bg);
-    width: 24px;
+    width: fit-content;
+    min-width: 24px;
+    padding: 3px;
     height: 24px;
-    justify-content: center;
-    align-items: center;
-    font-family: var(--font-source);
     font-weight: 400;
     font-size: 14px;
-    transition: background 0.1s;
     pointer-events: none;
   }
-  // FIXME font weight not changing
   & .productProperty_text {
+    font-family: inherit;
     font-weight: 400;
     font-size: 14px;
+    text-transform: capitalize;
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+
+  & .productColor_text {
+    font-family: inherit;
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 14px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+
+  & .productColor_buttons_label {
+    height: 24px;
+    width: 24px;
+    pointer-events: none;
   }
 
   & .cartComponents {
+    align-self: center;
     height: 190px;
     gap: 10px;
     & .cartComponents_quantity {
       & input {
-        width: 24px;
-        height: 24px;
+        width: 25px;
+        height: 25px;
       }
     }
 
@@ -119,8 +143,9 @@
 .overlay_cart_buttons {
   display: flex;
   width: 100%;
-  justify-content: space-between;
-  margin-top: 32px;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 16px 0;
 }
 
 .viewBag {
@@ -141,4 +166,14 @@
   background-color: var(--color-button);
   border: 1px solid var(--color-button);
   color: #ffffff;
+}
+
+.gray_background {
+  position: absolute;
+  width: 100vw;
+  height: calc(100vh - 69px);
+  background: rgba(57, 55, 72, 0.22);
+  top: 69px;
+  left: -4rem;
+  z-index: 1;
 }

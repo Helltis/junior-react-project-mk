@@ -8,6 +8,7 @@
   padding-bottom: 8px;
   font-size: 18px;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 .productColor_buttons {
@@ -18,7 +19,7 @@
 .productColor_buttons_radio {
   display: none;
   &:checked + .productColor_buttons_label {
-    border: 1px solid lightgreen;
+    border: 1px solid #5ece7b;
   }
 }
 

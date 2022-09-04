@@ -61,7 +61,6 @@ export class Category extends Component {
                     </Link>
                   ))}
                 </div>
-                <Outlet />
               </>
             );
           }}
