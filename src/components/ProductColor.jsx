@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import "./productColor.scss";
 import nextId from "react-id-generator";
 
+// this component is used to render color attributes of product
+// takes two props: attribute array and selected attributes object
 export class ProductColor extends Component {
+  //if product has selected color attributes render them as selected
   selected = this.props.selected
     ? this.props.selected[this.props.attribute.name]
     : null;

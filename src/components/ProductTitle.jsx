@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./productTitle.scss";
 
+//renders product title
+//takes two props: product brand and name
 export class ProductTitle extends Component {
   render() {
     return (

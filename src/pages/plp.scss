@@ -4,6 +4,11 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
+.product_tile {
+  width: fit-content;
+  justify-self: center;
+}
+
 @media (max-width: 1400px) {
   .category_products {
     grid-template-columns: 1fr 1fr 1fr;

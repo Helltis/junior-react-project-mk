@@ -35,13 +35,14 @@ const GET_PRODUCT = gql`
 
 export class PDP extends Component {
   render() {
+    // using url created by react-router to get product id
     const url = window.location.href;
     const id = url.split("/")[4];
     return (
       <Query query={GET_PRODUCT} variables={{ productId: id }}>
         {({ data, loading, error }) => {
-          if (loading) return <p>Loading...</p>;
-          if (error) return <p>{error}</p>;
+          if (loading) return <p>{`Loading ${id} page...`}</p>;
+          if (error) return <p>{`ERROR loading ${id} page!`}</p>;
           return (
             <div>
               <ProductContainer

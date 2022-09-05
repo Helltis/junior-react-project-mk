@@ -28,8 +28,8 @@ export class Navbar extends Component {
     return (
       <Query query={query}>
         {({ data, loading, error }) => {
-          if (loading) return <p>Loading...</p>;
-          if (error) return <p>ERROR!!!!</p>;
+          if (loading) return <p>Loading Navbar...</p>;
+          if (error) return <p>ERROR LOADING NAVBAR!!!!</p>;
           return (
             <nav className="navbar">
               <ul className="navbar_links">
@@ -41,9 +41,9 @@ export class Navbar extends Component {
                   </Link>
                 ))}
               </ul>
-              <a href="/" className="navbar_logo">
+              <div className="navbar_logo">
                 <img src={logo} alt="store logo" />
-              </a>
+              </div>
               <div className="navbar_icons">
                 <CurrencySelect
                   setCurrency={this.props.setCurrency}

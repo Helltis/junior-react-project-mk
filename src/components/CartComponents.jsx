@@ -5,6 +5,10 @@ import left from "../assets/arrow-left.svg";
 import right from "../assets/arrow-right.svg";
 import "./cartComponents.scss";
 
+// this component is used to render add/remove buttons and product gallery inside cart
+// takes five props:
+// onAdd, onRemove methods
+// product, gallery, quantity objects
 export class CartComponents extends Component {
   state = {
     imgIndex: 0,

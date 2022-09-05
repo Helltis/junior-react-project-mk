@@ -1,5 +1,7 @@
 import React, { Component, createRef } from "react";
 
+// this components is used to check if event happens outside of child element
+// takes a function to execute as prop
 export class OutsideClickHandler extends Component {
   wrapperRef = createRef();
   componentDidMount() {

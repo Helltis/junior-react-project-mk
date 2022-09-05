@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import "./productGallery.scss";
 
+//this component is used to render product images on PDP
+//takes product gallery array as a prop
 export class ProductGallery extends Component {
+  //set default image
   state = {
     selectedImg: this.props.gallery[0],
   };

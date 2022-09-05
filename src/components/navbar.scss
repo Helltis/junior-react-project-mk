@@ -20,13 +20,13 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 0.5rem;
-  cursor: pointer;
 }
 
 .navbar_links li {
   display: flex;
   border-bottom: 2px solid rgba(255, 255, 255, 0);
   padding: 0.5rem 0.5rem 1.5rem 0.5rem;
+  cursor: pointer;
 }
 
 .navbar_links li:hover {

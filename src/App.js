@@ -17,6 +17,7 @@ export class App extends Component {
       JSON.parse(window.localStorage.getItem("cartItemsQuantity")) || 0,
   };
 
+  //save state in local storage on update to prevent state reset on update
   componentDidUpdate() {
     window.localStorage.setItem(
       "currencyIndex",
@@ -40,9 +41,12 @@ export class App extends Component {
     this.setState({ category: Category });
   };
 
+  //this function takes product object as input and saves it to state property 'cartItems'
+  // if object is already present it increments 'quantity' property, else creates new with quantity = 1
+  // also increments 'cartItemsQuantity' state
+  // using loDash function 'isEqual' for deep comparison of product objects
   onAdd = (product) => {
     const exists = this.findProduct(product);
-    console.log(exists);
     if (exists) {
       this.setState({
         cartItems: this.state.cartItems.map((x) =>
@@ -61,6 +65,9 @@ export class App extends Component {
     });
   };
 
+  // this function finds product object in 'cartItems' property and decrements
+  // quantity if it is > 1, else deletes product
+  // also decrements 'cartItemsQuantity' property
   onRemove = (product) => {
     const exists = this.findProduct(product);
     if (exists.quantity === 1) {
@@ -81,10 +88,7 @@ export class App extends Component {
     });
   };
 
-  productTotalPrice = (product) => {
-    return product.quantity * product.prices[this.state.currencyIndex].amount;
-  };
-
+  // find object in array by comparing its name and attributes
   findProduct = (product) =>
     this.state.cartItems.find(
       (x) =>
@@ -105,6 +109,7 @@ export class App extends Component {
           onRemove={this.onRemove}
         />
         <Routes>
+          <Route path="*" element={<h1>Page not found.</h1>} />
           <Route
             path="/"
             element={

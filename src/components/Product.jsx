@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./product.scss";
 import cartIcon from "../assets/cartIcon.svg";
 
+//this component is used to draw product tiles on PLP
+// takes three props: product object, currency index state, onAdd method
 export class Product extends Component {
   render() {
     const isInStock = this.props.product.inStock
@@ -9,6 +11,7 @@ export class Product extends Component {
       : "product_outOfStock";
     return (
       <div className={isInStock}>
+        {/* add item to cart if has no attributes to select else open PDP page */}
         <div
           className="product_cartIcon"
           onClick={(e) => {
