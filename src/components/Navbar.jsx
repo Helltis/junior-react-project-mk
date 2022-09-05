@@ -42,7 +42,9 @@ export class Navbar extends Component {
                 ))}
               </ul>
               <div className="navbar_logo">
-                <img src={logo} alt="store logo" />
+                <Link to="/">
+                  <img src={logo} alt="store logo" />
+                </Link>
               </div>
               <div className="navbar_icons">
                 <CurrencySelect
