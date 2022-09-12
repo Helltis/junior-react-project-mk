@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./productTitle.scss";
 
 //renders product title
 //takes two props: product brand and name
-export class ProductTitle extends Component {
+export class ProductTitle extends PureComponent {
   render() {
     return (
       <div className="productTitle">

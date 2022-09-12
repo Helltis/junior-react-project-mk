@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import PLP from "./pages/PLP";
 import "./App.css";
 import { PDP } from "./pages/PDP";
@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 import _ from "lodash";
 
-export class App extends Component {
+export class App extends PureComponent {
   state = {
     currencyIndex:
       JSON.parse(window.localStorage.getItem("currencyIndex")) || 0,

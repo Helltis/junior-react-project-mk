@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import logo from "../assets/logo.svg";
 import "./navbar.scss";
 import { gql } from "@apollo/client";
@@ -19,7 +19,7 @@ const query = gql`
   }
 `;
 
-export class Navbar extends Component {
+export class Navbar extends PureComponent {
   setCategory = (cat) => {
     this.props.setCategory(cat);
   };

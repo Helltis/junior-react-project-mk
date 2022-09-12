@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./plp.scss";
 import Product from "../components/Product";
 import { gql } from "@apollo/client";
@@ -36,7 +36,7 @@ const GET_PRODUCTS = gql`
     }
   }
 `;
-export class Category extends Component {
+export class Category extends PureComponent {
   render() {
     return (
       <div className="category">

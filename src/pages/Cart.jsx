@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import CartComponents from "../components/CartComponents";
 import { ProductTitle } from "../components/ProductTitle";
 import { ProductProperty } from "../components/ProductProperty";
@@ -6,7 +6,7 @@ import { ProductColor } from "../components/ProductColor";
 import "./cart.scss";
 import nextId from "react-id-generator";
 
-export class Cart extends Component {
+export class Cart extends PureComponent {
   // function used with check out button to reset shop state
   handleReload = () => {
     localStorage.clear();

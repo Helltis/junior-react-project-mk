@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import minus from "../assets/minus-square.svg";
 import plus from "../assets/plus-square.svg";
 import left from "../assets/arrow-left.svg";
 import right from "../assets/arrow-right.svg";
 import "./cartComponents.scss";
 
-// this component is used to render add/remove buttons and product gallery inside cart
+// this component is used to render add/remove buttons and product slider inside cart
 // takes five props:
 // onAdd, onRemove methods
 // product, gallery, quantity objects
-export class CartComponents extends Component {
+export class CartComponents extends PureComponent {
   state = {
     imgIndex: 0,
   };
@@ -52,6 +52,7 @@ export class CartComponents extends Component {
             onClick={() => this.props.onRemove(this.props.item)}
           />
         </div>
+        {/* gallery slider here */}
         <div className="cartComponents_preview">
           <img
             src={this.props.gallery[this.state.imgIndex]}

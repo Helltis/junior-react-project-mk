@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import emptyCartIcon from "../assets/emptyCartIcon.svg";
 import "./cartOverlay.scss";
 import OutsideClickHandler from "./OutsideClickHandler";
@@ -13,7 +13,7 @@ import PopUp from "./PopUp";
 //takes five props:
 //cartItemsQuantity, cartItems, currencyIndex states and
 // onAdd, onRemove methods
-export class CartOverlay extends Component {
+export class CartOverlay extends PureComponent {
   state = { selected: false, active: false };
 
   setSelected = () => {

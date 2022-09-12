@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { ProductContainer } from "../components/ProductContainer";
 import { Query } from "@apollo/react-components";
 import { gql } from "@apollo/client";
@@ -33,7 +33,7 @@ const GET_PRODUCT = gql`
   }
 `;
 
-export class PDP extends Component {
+export class PDP extends PureComponent {
   render() {
     // using url created by react-router to get product id
     const url = window.location.href;

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./productContainer.scss";
 import { ProductGallery } from "./ProductGallery";
 import { ProductTitle } from "./ProductTitle";
@@ -9,7 +9,7 @@ import PopUp from "./PopUp";
 
 // this component is used to render product and it's attributes inside PDP
 // takes three props: product object, currency index state and onAdd method
-export class ProductContainer extends Component {
+export class ProductContainer extends PureComponent {
   state = { active: false };
 
   // this object and method are used to save and add selected attributes to product object

@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import nextId from "react-id-generator";
 import "./productProperty.scss";
 
 //this component renders all 'text' attributes of product
 //takes two props: attribute array and selected attributes object
-export class ProductProperty extends Component {
+//TODO try Symbol for ids
+export class ProductProperty extends PureComponent {
   //check if product has selected attributes
   selected = this.props.selected
     ? this.props.selected[this.props.attribute.name]

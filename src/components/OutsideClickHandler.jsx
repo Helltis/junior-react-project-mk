@@ -1,8 +1,8 @@
-import React, { Component, createRef } from "react";
+import React, { PureComponent, createRef } from "react";
 
 // this components is used to check if event happens outside of child element
 // takes a function to execute as prop
-export class OutsideClickHandler extends Component {
+export class OutsideClickHandler extends PureComponent {
   wrapperRef = createRef();
   componentDidMount() {
     document.addEventListener("mousedown", this.handleClickOutside);

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import arrow from "../assets/arrow.svg";
 import "./currencySelect.scss";
 import OutsideClickHandler from "./OutsideClickHandler";
@@ -6,7 +6,7 @@ import OutsideClickHandler from "./OutsideClickHandler";
 //this component renders currency selector
 //on selection of currency it will find its index in currencies array and set 'currencyIndex' state
 //takes three props: setCurrency method, currencies array and currencyIndex state
-export class CurrencySelect extends Component {
+export class CurrencySelect extends PureComponent {
   state = { selected: false };
 
   setSelected = () => {

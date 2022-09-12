@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./productColor.scss";
 import nextId from "react-id-generator";
 
@@ -6,7 +6,7 @@ import nextId from "react-id-generator";
 // takes two props: attribute array and selected attributes object
 // I deviated from design here and created a black border around color attributes
 // in order to fix problem of white color on white background, which is invisible)
-export class ProductColor extends Component {
+export class ProductColor extends PureComponent {
   //if product has selected color attributes render them as selected
   selected = this.props.selected
     ? this.props.selected[this.props.attribute.name]

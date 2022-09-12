@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./product.scss";
 import cartIcon from "../assets/cartIcon.svg";
 
 //this component is used to draw product tiles on PLP
 // takes three props: product object, currency index state, onAdd method
-export class Product extends Component {
+export class Product extends PureComponent {
   render() {
     const isInStock = this.props.product.inStock
       ? "product"
