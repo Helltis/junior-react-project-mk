@@ -1,10 +1,7 @@
 import React, { PureComponent } from "react";
 import "./productGallery.scss";
 
-//this component is used to render product images on PDP
-//takes product gallery array as a prop
 export class ProductGallery extends PureComponent {
-  //set default image
   state = {
     selectedImg: this.props.gallery[0],
   };
@@ -12,7 +9,6 @@ export class ProductGallery extends PureComponent {
   render() {
     return (
       <div className="productGallery">
-        {/* show thumbnails if gallery has more than 1 picture */}
         {this.props.gallery.length > 1 && (
           <div className="productGallery_thumbs">
             {this.props.gallery.map((img, index) => (

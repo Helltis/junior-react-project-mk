@@ -2,11 +2,8 @@ import React, { PureComponent } from "react";
 import nextId from "react-id-generator";
 import "./productProperty.scss";
 
-//this component renders all 'text' attributes of product
-//takes two props: attribute array and selected attributes object
 //TODO try Symbol for ids
 export class ProductProperty extends PureComponent {
-  //check if product has selected attributes
   selected = this.props.selected
     ? this.props.selected[this.props.attribute.name]
     : null;
@@ -23,7 +20,6 @@ export class ProductProperty extends PureComponent {
             const id = nextId();
             return (
               <React.Fragment key={item.id}>
-                {/* render attribute as checked if it is already selected */}
                 {item.id === this.selected ? (
                   <input
                     className="productProperty_buttons_radio"

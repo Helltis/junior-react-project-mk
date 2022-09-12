@@ -35,7 +35,6 @@ const GET_PRODUCT = gql`
 
 export class PDP extends PureComponent {
   render() {
-    // using url created by react-router to get product id
     const url = window.location.href;
     const id = url.split("/")[4];
     return (

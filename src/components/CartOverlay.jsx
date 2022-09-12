@@ -10,9 +10,6 @@ import { Link } from "react-router-dom";
 import nextId from "react-id-generator";
 import PopUp from "./PopUp";
 
-//takes five props:
-//cartItemsQuantity, cartItems, currencyIndex states and
-// onAdd, onRemove methods
 export class CartOverlay extends PureComponent {
   state = { selected: false, active: false };
 
@@ -36,7 +33,6 @@ export class CartOverlay extends PureComponent {
     }
   };
 
-  // this function calculates total price of products in cart overlay + tax
   calculateTotal(products) {
     let total = 0;
     products.forEach((product) => {
@@ -48,18 +44,15 @@ export class CartOverlay extends PureComponent {
     return Number(total.toFixed(2));
   }
 
-  // reset store on activation
   handleReload = () => {
     localStorage.clear();
     window.location.reload();
   };
 
   render() {
-    //check if badge with number of all products in car should be displayed
     const cartBadge =
       this.props.cartItemsQuantity === 0 ? "" : "overlay_cart_icon";
     const totalPrice = this.calculateTotal(this.props.cartItems);
-    //check if cart is empty and activate toast if it is
     const isEmpty = this.props.cartItems.length === 0 ? true : false;
     return (
       <div className="overlay">

@@ -1,8 +1,6 @@
 import React, { PureComponent } from "react";
 import "./popUp.scss";
 
-// this component handles toast styling
-// takes two props: active bool and message string to display
 export class PopUp extends PureComponent {
   render() {
     return (

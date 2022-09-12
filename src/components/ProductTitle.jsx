@@ -1,8 +1,6 @@
 import React, { PureComponent } from "react";
 import "./productTitle.scss";
 
-//renders product title
-//takes two props: product brand and name
 export class ProductTitle extends PureComponent {
   render() {
     return (

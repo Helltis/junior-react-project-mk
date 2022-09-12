@@ -13,7 +13,6 @@ export class Cart extends PureComponent {
     window.location.reload();
   };
 
-  // this function calculates total price of products in cart
   calculateTotal(products) {
     let total = 0;
     products.forEach((product) => {
@@ -24,14 +23,11 @@ export class Cart extends PureComponent {
     return Number(total.toFixed(2));
   }
 
-  //this function calculates tax value of 21%
   calculateTax(total) {
     return Number(((total / 100) * 21).toFixed(2));
   }
   render() {
-    // check if cart has any items and assign appropriate components to variable 'cartItems'
     const isEmpty = this.props.cartItems.length === 0 ? true : false;
-    // this variable is returned inside div 'pageCart' below
     let cartItems;
     if (isEmpty) {
       cartItems = <h1>Your cart is empty</h1>;

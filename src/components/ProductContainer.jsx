@@ -7,12 +7,9 @@ import { ProductColor } from "./ProductColor";
 import parse from "html-react-parser";
 import PopUp from "./PopUp";
 
-// this component is used to render product and it's attributes inside PDP
-// takes three props: product object, currency index state and onAdd method
 export class ProductContainer extends PureComponent {
   state = { active: false };
 
-  // this object and method are used to save and add selected attributes to product object
   selectedAttributes = {};
 
   setSelectedAttributes = (attrName, attrId) => {
@@ -22,7 +19,6 @@ export class ProductContainer extends PureComponent {
     };
   };
 
-  // this method checks if product has selected attributes before adding it to 'cartItems' state array
   addToCart = (product) => {
     if (
       Object.keys(this.selectedAttributes).length < product.attributes.length
@@ -39,7 +35,6 @@ export class ProductContainer extends PureComponent {
         }, 2000);
       }
     } else {
-      //add attributes to product object if all attributes selected
       const productWithAttributes = {
         ...product,
         selectedAttributes: this.selectedAttributes,
@@ -49,7 +44,6 @@ export class ProductContainer extends PureComponent {
   };
   render() {
     const price = this.props.product.prices[this.props.currencyIndex];
-    // disable 'add to cart' button if product property 'inStock' is false
     const inStock = this.props.product.inStock
       ? "containerCart_button"
       : "containerCart_button_inactive";
