@@ -5,7 +5,7 @@ import OutsideClickHandler from "../../components/OutsideClickHandler";
 import { ProductTitle } from "../../components/ProductTitle";
 import { ProductProperty } from "../../components/ProductProperty";
 import { ProductColor } from "../../components/ProductColor";
-import { CartComponents } from "../CartComponents";
+import CartItems from "../CartItems";
 import { Link } from "react-router-dom";
 import nextId from "react-id-generator";
 import PopUp from "../../components/PopUp";
@@ -109,7 +109,7 @@ export class CartOverlay extends PureComponent {
                             }
                           })}
                         </div>
-                        <CartComponents
+                        <CartItems
                           gallery={item.gallery}
                           quantity={item.quantity}
                           onAdd={this.props.onAdd}

@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import CartComponents from "../../containers/CartComponents";
+import CartItems from "../../containers/CartItems";
 import { ProductTitle } from "../../components/ProductTitle";
 import { ProductProperty } from "../../components/ProductProperty";
 import { ProductColor } from "../../components/ProductColor";
@@ -72,7 +72,7 @@ export class Cart extends PureComponent {
                     }
                   })}
                 </div>
-                <CartComponents
+                <CartItems
                   gallery={item.gallery}
                   quantity={item.quantity}
                   onAdd={this.props.onAdd}
