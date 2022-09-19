@@ -6,18 +6,17 @@ export class ProductProperty extends PureComponent {
   render() {
     // using react-id-generator here to avoid id/name collisions of attributes with same id/name
     const propertyName = nextId("property");
-    const selected = this.props.selected?.[this.props.attribute.name];
+    const { attribute, setSelectedAttributes } = this.props;
+    const selected = this.props.selected?.[attribute.name];
     return (
       <div className="productProperty">
-        <p className="productProperty_text">
-          {`${this.props.attribute.name}:`}
-        </p>
+        <p className="productProperty_text">{`${attribute.name}:`}</p>
         <div className="productProperty_buttons">
-          {this.props.attribute.items.map((item) => {
+          {attribute.items.map((button) => {
             const id = nextId();
             return (
-              <React.Fragment key={item.id}>
-                {item.id === selected ? (
+              <React.Fragment key={button.id}>
+                {button.id === selected ? (
                   <input
                     className="productProperty_buttons_radio"
                     type="radio"
@@ -33,15 +32,12 @@ export class ProductProperty extends PureComponent {
                     name={propertyName}
                     id={id}
                     onChange={() =>
-                      this.props.setSelectedAttributes(
-                        this.props.attribute.name,
-                        item.id
-                      )
+                      setSelectedAttributes(attribute.name, button.id)
                     }
                   />
                 )}
                 <label className="productProperty_buttons_label" htmlFor={id}>
-                  {item.value}
+                  {button.value}
                 </label>
               </React.Fragment>
             );

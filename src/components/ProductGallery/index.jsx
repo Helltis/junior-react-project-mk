@@ -2,28 +2,38 @@ import React, { PureComponent } from "react";
 import "./productGallery.scss";
 
 export class ProductGallery extends PureComponent {
-  state = {
-    selectedImg: this.props.gallery[0],
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedImg: this.props.gallery[0],
+    };
+  }
+
+  setImage = (img) => {
+    this.setState({ selectedImg: img });
   };
 
   render() {
+    const { gallery } = this.props;
+    const selectedImg = this.state.selectedImg;
+    const setImage = this.setImage;
     return (
       <div className="productGallery">
-        {this.props.gallery.length > 1 && (
+        {gallery.length > 1 && (
           <div className="productGallery_thumbs">
-            {this.props.gallery.map((img, index) => (
+            {gallery.map((img, index) => (
               <img
                 src={img}
                 alt="dog"
                 key={index}
-                onClick={() => this.setState({ selectedImg: img })}
+                onClick={() => setImage(img)}
               />
             ))}
           </div>
         )}
         <div className="productGallery_container">
           <img
-            src={this.state.selectedImg}
+            src={selectedImg}
             alt="Selected"
             className="productGallery_image"
           />

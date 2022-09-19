@@ -3,10 +3,11 @@ import "./productTitle.scss";
 
 export class ProductTitle extends PureComponent {
   render() {
+    const { brand, name } = this.props;
     return (
       <div className="productTitle">
-        <p className="productTitle_brand">{this.props.brand}</p>
-        <p className="productTitle_name">{this.props.name}</p>
+        <p className="productTitle_brand">{brand}</p>
+        <p className="productTitle_name">{name}</p>
       </div>
     );
   }
