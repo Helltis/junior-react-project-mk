@@ -1,14 +1,14 @@
 import React, { PureComponent } from "react";
-import emptyCartIcon from "../assets/emptyCartIcon.svg";
+import emptyCartIcon from "../../assets/emptyCartIcon.svg";
 import "./cartOverlay.scss";
-import OutsideClickHandler from "./OutsideClickHandler";
-import { ProductTitle } from "./ProductTitle";
-import { ProductProperty } from "./ProductProperty";
-import { ProductColor } from "./ProductColor";
-import { CartComponents } from "./CartComponents";
+import OutsideClickHandler from "../../components/OutsideClickHandler";
+import { ProductTitle } from "../../components/ProductTitle";
+import { ProductProperty } from "../../components/ProductProperty";
+import { ProductColor } from "../../components/ProductColor";
+import { CartComponents } from "../CartComponents";
 import { Link } from "react-router-dom";
 import nextId from "react-id-generator";
-import PopUp from "./PopUp";
+import PopUp from "../../components/PopUp";
 
 export class CartOverlay extends PureComponent {
   state = { selected: false, active: false };

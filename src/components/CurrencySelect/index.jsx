@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
-import arrow from "../assets/arrow.svg";
+import arrow from "../../assets/arrow.svg";
 import "./currencySelect.scss";
-import OutsideClickHandler from "./OutsideClickHandler";
+import OutsideClickHandler from "../OutsideClickHandler";
 
 export class CurrencySelect extends PureComponent {
   state = { selected: false };
@@ -13,35 +13,38 @@ export class CurrencySelect extends PureComponent {
   };
 
   render() {
+    const { currencies, currencyIndex, setCurrency } = this.props;
+    const selected = this.state.selected;
+    const setSelected = this.setSelected;
     return (
       <div className="currency_select">
         <div className="select_menu">
-          <div className="select_button" onClick={() => this.setSelected()}>
+          <div className="select_button" onClick={() => setSelected()}>
             <span className="select_button_text">
-              {this.props.currencies[this.props.currencyIndex].symbol}
+              {currencies[currencyIndex].symbol}
             </span>
             <img
               src={arrow}
               className="select_button_icon"
               alt="icon"
               style={{
-                transform: this.state.selected ? "rotate(180deg)" : "inherit",
+                transform: selected ? "rotate(180deg)" : "inherit",
               }}
             />
           </div>
-          {this.state.selected && (
-            <OutsideClickHandler onOutsideClick={this.setSelected}>
+          {selected && (
+            <OutsideClickHandler onOutsideClick={setSelected}>
               <ul className="select_options">
-                {this.props.currencies.map((el) => (
+                {currencies.map((currency) => (
                   <li
-                    key={el.label}
+                    key={currency.label}
                     className="option"
                     onClick={() => {
-                      this.props.setCurrency(this.props.currencies.indexOf(el));
-                      this.setSelected();
+                      setCurrency(currencies.indexOf(currency));
+                      setSelected();
                     }}
                   >
-                    {el.symbol} {el.label}
+                    {currency.symbol} {currency.label}
                   </li>
                 ))}
               </ul>

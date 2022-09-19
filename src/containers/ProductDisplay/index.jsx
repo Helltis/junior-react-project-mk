@@ -1,11 +1,11 @@
 import React, { PureComponent } from "react";
 import "./productContainer.scss";
-import { ProductGallery } from "./ProductGallery";
-import { ProductTitle } from "./ProductTitle";
-import { ProductProperty } from "./ProductProperty";
-import { ProductColor } from "./ProductColor";
+import { ProductGallery } from "../../components/ProductGallery";
+import { ProductTitle } from "../../components/ProductTitle";
+import { ProductProperty } from "../../components/ProductProperty";
+import { ProductColor } from "../../components/ProductColor";
 import parse from "html-react-parser";
-import PopUp from "./PopUp";
+import PopUp from "../../components/PopUp";
 
 export class ProductContainer extends PureComponent {
   state = { active: false };

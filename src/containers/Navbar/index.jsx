@@ -1,11 +1,11 @@
 import React, { PureComponent } from "react";
-import logo from "../assets/logo.svg";
+import logo from "../../assets/logo.svg";
 import "./navbar.scss";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/react-components";
 import { Link } from "react-router-dom";
-import CurrencySelect from "./CurrencySelect";
-import CartOverlay from "./CartOverlay";
+import CurrencySelect from "../../components/CurrencySelect";
+import CartOverlay from "../CartOverlay";
 
 const query = gql`
   {

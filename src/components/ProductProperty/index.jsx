@@ -2,13 +2,11 @@ import React, { PureComponent } from "react";
 import nextId from "react-id-generator";
 import "./productProperty.scss";
 
-//TODO try Symbol for ids
 export class ProductProperty extends PureComponent {
-  selected = this.props.selected?.[this.props.attribute.name];
-
   render() {
     // using react-id-generator here to avoid id/name collisions of attributes with same id/name
-    const name = nextId();
+    const propertyName = nextId("property");
+    const selected = this.props.selected?.[this.props.attribute.name];
     return (
       <div className="productProperty">
         <p className="productProperty_text">
@@ -19,12 +17,12 @@ export class ProductProperty extends PureComponent {
             const id = nextId();
             return (
               <React.Fragment key={item.id}>
-                {item.id === this.selected ? (
+                {item.id === selected ? (
                   <input
                     className="productProperty_buttons_radio"
                     type="radio"
                     id={id}
-                    name={name}
+                    name={propertyName}
                     checked
                     readOnly
                   />
@@ -32,7 +30,7 @@ export class ProductProperty extends PureComponent {
                   <input
                     className="productProperty_buttons_radio"
                     type="radio"
-                    name={name}
+                    name={propertyName}
                     id={id}
                     onChange={() =>
                       this.props.setSelectedAttributes(

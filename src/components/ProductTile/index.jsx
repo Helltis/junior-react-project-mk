@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import "./product.scss";
-import cartIcon from "../assets/cartIcon.svg";
+import cartIcon from "../../assets/cartIcon.svg";
 
 export class Product extends PureComponent {
   render() {

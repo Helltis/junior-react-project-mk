@@ -16,17 +16,17 @@
   font-size: 24px;
 }
 
-.cartComponents_preview {
+.cartComponents_slider {
   position: relative;
 }
-.cartComponents_preview img {
+.cartComponents_slider img {
   width: 200px;
   height: 100%;
   object-fit: cover;
   cursor: default;
 }
 
-.cartComponents_preview_buttons {
+.cartComponents_slider_buttons {
   display: flex;
   gap: 8px;
   z-index: 100;
@@ -35,7 +35,7 @@
   bottom: 6%;
 }
 
-.cartComponents_preview_buttons_disabled {
+.cartComponents_slider_buttons_disabled {
   visibility: hidden;
   pointer-events: none;
 }

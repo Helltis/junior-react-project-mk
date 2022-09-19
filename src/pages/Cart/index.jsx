@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
-import CartComponents from "../components/CartComponents";
-import { ProductTitle } from "../components/ProductTitle";
-import { ProductProperty } from "../components/ProductProperty";
-import { ProductColor } from "../components/ProductColor";
+import CartComponents from "../../containers/CartComponents";
+import { ProductTitle } from "../../components/ProductTitle";
+import { ProductProperty } from "../../components/ProductProperty";
+import { ProductColor } from "../../components/ProductColor";
 import "./cart.scss";
 import nextId from "react-id-generator";
 

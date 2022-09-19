@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { ProductContainer } from "../components/ProductContainer";
+import { ProductContainer } from "../../containers/ProductDisplay";
 import { Query } from "@apollo/react-components";
 import { gql } from "@apollo/client";
 

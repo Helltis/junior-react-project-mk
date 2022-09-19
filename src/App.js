@@ -3,7 +3,7 @@ import PLP from "./pages/PLP";
 import "./App.css";
 import { PDP } from "./pages/PDP";
 import Cart from "./pages/Cart";
-import Navbar from "./components/Navbar";
+import Navbar from "./containers/Navbar";
 import { Route, Routes } from "react-router-dom";
 import _ from "lodash";
 

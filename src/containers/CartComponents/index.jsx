@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
-import minus from "../assets/minus-square.svg";
-import plus from "../assets/plus-square.svg";
-import left from "../assets/arrow-left.svg";
-import right from "../assets/arrow-right.svg";
+import minus from "../../assets/minus-square.svg";
+import plus from "../../assets/plus-square.svg";
+import left from "../../assets/arrow-left.svg";
+import right from "../../assets/arrow-right.svg";
 import "./cartComponents.scss";
 
 export class CartComponents extends PureComponent {
@@ -27,8 +27,8 @@ export class CartComponents extends PureComponent {
   render() {
     const imgArrows =
       this.glrLen > 1
-        ? "cartComponents_preview_buttons"
-        : "cartComponents_preview_buttons_disabled";
+        ? "cartComponents_slider_buttons"
+        : "cartComponents_slider_buttons_disabled";
     return (
       <div className="cartComponents">
         <div className="cartComponents_quantity">
@@ -49,7 +49,7 @@ export class CartComponents extends PureComponent {
           />
         </div>
         {/* gallery slider here */}
-        <div className="cartComponents_preview">
+        <div className="cartComponents_slider">
           <img
             src={this.props.gallery[this.state.imgIndex]}
             alt="product preview"

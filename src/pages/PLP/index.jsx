@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import "./plp.scss";
-import Product from "../components/Product";
+import Product from "../../components/ProductTile";
 import { gql } from "@apollo/client";
 import { Query } from "@apollo/react-components";
 import { Link } from "react-router-dom";
