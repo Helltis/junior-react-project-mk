@@ -4,9 +4,8 @@ import "./productProperty.scss";
 
 //TODO try Symbol for ids
 export class ProductProperty extends PureComponent {
-  selected = this.props.selected
-    ? this.props.selected[this.props.attribute.name]
-    : null;
+  selected = this.props.selected?.[this.props.attribute.name];
+
   render() {
     // using react-id-generator here to avoid id/name collisions of attributes with same id/name
     const name = nextId();
