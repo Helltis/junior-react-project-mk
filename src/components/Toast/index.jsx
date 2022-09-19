@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
-import "./popUp.scss";
+import "./toast.scss";
 
-export class PopUp extends PureComponent {
+export class Toast extends PureComponent {
   render() {
     const { active, message } = this.props;
     return (
@@ -12,4 +12,4 @@ export class PopUp extends PureComponent {
   }
 }
 
-export default PopUp;
+export default Toast;

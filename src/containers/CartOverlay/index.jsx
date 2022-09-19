@@ -8,7 +8,7 @@ import { ProductColor } from "../../components/ProductColor";
 import CartItems from "../CartItems";
 import { Link } from "react-router-dom";
 import nextId from "react-id-generator";
-import PopUp from "../../components/PopUp";
+import Toast from "../../components/Toast";
 
 export class CartOverlay extends PureComponent {
   state = { selected: false, active: false };
@@ -63,7 +63,7 @@ export class CartOverlay extends PureComponent {
         >
           <img src={emptyCartIcon} alt="cart overlay" />
         </div>
-        <PopUp message="Your cart is empty" active={this.state.active} />
+        <Toast message="Your cart is empty" active={this.state.active} />
         {this.state.selected && (
           <>
             <OutsideClickHandler onOutsideClick={this.setSelected}>

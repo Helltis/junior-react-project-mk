@@ -5,10 +5,10 @@ import { ProductTitle } from "../../components/ProductTitle";
 import { ProductProperty } from "../../components/ProductProperty";
 import { ProductColor } from "../../components/ProductColor";
 import parse from "html-react-parser";
-import PopUp from "../../components/PopUp";
+import Toast from "../../components/Toast";
 
 export class ProductContainer extends PureComponent {
-  state = { active: false };
+  state = { toast: false };
 
   selectedAttributes = {};
 
@@ -23,14 +23,14 @@ export class ProductContainer extends PureComponent {
     if (
       Object.keys(this.selectedAttributes).length < product.attributes.length
     ) {
-      //Create toast if no attributes selected
-      if (!this.state.active) {
+      // Create toast if no attributes selected
+      if (!this.state.toast) {
         this.setState({
-          active: !this.state.active,
+          active: !this.state.toast,
         });
         setTimeout(() => {
           this.setState({
-            active: !this.state.active,
+            active: !this.state.toast,
           });
         }, 2000);
       }
@@ -85,8 +85,8 @@ export class ProductContainer extends PureComponent {
             <button onClick={() => this.addToCart(this.props.product)}>
               ADD TO CART
             </button>
-            <PopUp
-              active={this.state.active}
+            <Toast
+              active={this.state.toast}
               message="Please select attributes."
             />
           </div>
