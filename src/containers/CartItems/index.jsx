@@ -5,16 +5,11 @@ import QuantityButtons from "../../components/QuantityButtons";
 
 export class CartItems extends PureComponent {
   render() {
-    const { gallery, onAdd, onRemove, item, quantity } = this.props;
+    const { onAdd, onRemove, item } = this.props;
     return (
       <div className="cartComponents">
-        <QuantityButtons
-          onAdd={onAdd}
-          onRemove={onRemove}
-          item={item}
-          quantity={quantity}
-        />
-        <ImageSlider gallery={gallery} />
+        <QuantityButtons onAdd={onAdd} onRemove={onRemove} item={item} />
+        <ImageSlider gallery={item.gallery} />
       </div>
     );
   }

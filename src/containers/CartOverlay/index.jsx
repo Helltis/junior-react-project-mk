@@ -9,9 +9,11 @@ import CartItems from "../CartItems";
 import { Link } from "react-router-dom";
 import nextId from "react-id-generator";
 import Toast from "../../components/Toast";
+import { checkout } from "../../utils/handleCheckout";
+import { calculateTotalWithTax, itemPrice } from "../../utils/calculatePrice";
 
 export class CartOverlay extends PureComponent {
-  state = { selected: false, active: false };
+  state = { selected: false, toast: false };
 
   setSelected = () => {
     this.setState({
@@ -19,75 +21,53 @@ export class CartOverlay extends PureComponent {
     });
   };
 
-  // function activates PopUp toast for 2 seconds
   createToast = () => {
-    if (!this.state.active) {
+    if (!this.state.toast) {
       this.setState({
-        active: !this.state.active,
+        active: !this.state.toast,
       });
       setTimeout(() => {
         this.setState({
-          active: !this.state.active,
+          active: !this.state.toast,
         });
       }, 2000);
     }
   };
 
-  calculateTotal(products) {
-    let total = 0;
-    products.forEach((product) => {
-      total =
-        total +
-        product.prices[this.props.currencyIndex].amount * product.quantity;
-    });
-    total += (total / 100) * 21;
-    return Number(total.toFixed(2));
-  }
-
-  handleReload = () => {
-    localStorage.clear();
-    window.location.reload();
-  };
-
   render() {
-    const cartBadge =
-      this.props.cartItemsQuantity === 0 ? "" : "overlay_cart_icon";
-    const totalPrice = this.calculateTotal(this.props.cartItems);
-    const isEmpty = this.props.cartItems.length === 0 ? true : false;
+    const { cartItems, currencyIndex, cartItemsQuantity } = this.props;
+    const { selected, toast } = this.state;
+    const totalPrice = calculateTotalWithTax(cartItems, currencyIndex);
+    const cartBadge = cartItemsQuantity === 0 ? "" : "overlay_cart_icon";
+    const isEmpty = cartItems.length === 0 ? true : false;
+    const currencySymbol = cartItems[0]?.prices[currencyIndex].currency.symbol;
     return (
       <div className="overlay">
         <div
           className={cartBadge}
-          value={this.props.cartItemsQuantity}
+          value={cartItemsQuantity}
           onClick={() => (isEmpty ? this.createToast() : this.setSelected())}
         >
           <img src={emptyCartIcon} alt="cart overlay" />
         </div>
-        <Toast message="Your cart is empty" active={this.state.active} />
-        {this.state.selected && (
+        <Toast message="Your cart is empty" active={toast} />
+        {selected && (
           <>
             <OutsideClickHandler onOutsideClick={this.setSelected}>
               {!isEmpty && (
                 <div className="overlay_cart">
                   <div className="overlay_cart_title">
                     <span className="title">My Bag. </span>
-                    <span className="quantity">{`${this.props.cartItemsQuantity} items`}</span>
+                    <span className="quantity">{`${cartItemsQuantity} items`}</span>
                   </div>
                   <div className="overlay_cart_items">
-                    {this.props.cartItems.map((item) => (
+                    {cartItems.map((item) => (
                       <div className="overlay_cart_item" key={nextId()}>
                         <div className="overlay_cart_properties">
                           <ProductTitle brand={item.brand} name={item.name} />
                           <span className="overlay_cart_price">
-                            {
-                              this.props.cartItems[0].prices[
-                                this.props.currencyIndex
-                              ].currency.symbol
-                            }
-                            {(
-                              item.prices[this.props.currencyIndex].amount *
-                              item.quantity
-                            ).toFixed(2)}
+                            {currencySymbol}
+                            {itemPrice(item, currencyIndex)}
                           </span>
                           {item.attributes.map((attribute) => {
                             if (attribute.type === "text") {
@@ -121,10 +101,7 @@ export class CartOverlay extends PureComponent {
                   </div>
                   <div className="overlay_cart_total">
                     <span>Total</span>
-                    <span>{`${
-                      this.props.cartItems[0].prices[this.props.currencyIndex]
-                        .currency.symbol
-                    }${totalPrice}`}</span>
+                    <span>{`${currencySymbol}${totalPrice}`}</span>
                   </div>
                   <div className="overlay_cart_buttons">
                     <Link to="/cart">
@@ -135,10 +112,7 @@ export class CartOverlay extends PureComponent {
                         VIEW BAG
                       </button>
                     </Link>
-                    <button
-                      className="checkout"
-                      onClick={() => this.handleReload()}
-                    >
+                    <button className="checkout" onClick={() => checkout()}>
                       CHECK OUT
                     </button>
                   </div>

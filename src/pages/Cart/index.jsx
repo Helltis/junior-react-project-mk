@@ -5,110 +5,84 @@ import { ProductProperty } from "../../components/ProductProperty";
 import { ProductColor } from "../../components/ProductColor";
 import "./cart.scss";
 import nextId from "react-id-generator";
+import { checkout } from "../../utils/handleCheckout";
+import {
+  calculateTax,
+  itemPrice,
+  calculateTotalWithTax,
+} from "../../utils/calculatePrice";
 
 export class Cart extends PureComponent {
-  // function used with check out button to reset shop state
-  handleReload = () => {
-    localStorage.clear();
-    window.location.reload();
+  renderEmptyCart = () => {
+    <h1>Your cart is empty</h1>;
   };
 
-  calculateTotal(products) {
-    let total = 0;
-    products.forEach((product) => {
-      total =
-        total +
-        product.prices[this.props.currencyIndex].amount * product.quantity;
-    });
-    return Number(total.toFixed(2));
-  }
-
-  calculateTax(total) {
-    return Number(((total / 100) * 21).toFixed(2));
-  }
-  render() {
-    const isEmpty = this.props.cartItems.length === 0 ? true : false;
-    let cartItems;
-    if (isEmpty) {
-      cartItems = <h1>Your cart is empty</h1>;
-    } else {
-      const totalPrice = this.calculateTotal(this.props.cartItems);
-      const tax = this.calculateTax(totalPrice);
-      const withTax = (totalPrice + tax).toFixed(2);
-      const currencySymbol =
-        this.props.cartItems[0].prices[this.props.currencyIndex].currency
-          .symbol;
-      cartItems = (
-        <React.Fragment>
-          {this.props.cartItems.map((item) => (
-            <React.Fragment key={nextId()}>
-              <div className="pageCart_item">
-                <div className="pageCart_selectedProps">
-                  <ProductTitle brand={item.brand} name={item.name} />
-                  <span>
-                    {currencySymbol}
-                    {(
-                      item.prices[this.props.currencyIndex].amount *
-                      item.quantity
-                    ).toFixed(2)}
-                  </span>
-                  {item.attributes.map((attribute) => {
-                    if (attribute.type === "text") {
-                      return (
-                        <ProductProperty
-                          attribute={attribute}
-                          key={attribute.id}
-                          selected={item.selectedAttributes}
-                        />
-                      );
-                    } else {
-                      return (
-                        <ProductColor
-                          attribute={attribute}
-                          key={attribute.id}
-                          selected={item.selectedAttributes}
-                        />
-                      );
-                    }
-                  })}
-                </div>
-                <CartItems
-                  gallery={item.gallery}
-                  quantity={item.quantity}
-                  onAdd={this.props.onAdd}
-                  onRemove={this.props.onRemove}
-                  item={item}
-                />
+  renderCart = (cartItems) => {
+    const { currencyIndex, onAdd, onRemove, quantity } = this.props;
+    const totalPrice = calculateTotalWithTax(cartItems, currencyIndex);
+    const tax = calculateTax(totalPrice);
+    const currencySymbol = cartItems[0].prices[currencyIndex].currency.symbol;
+    return (
+      <React.Fragment>
+        {cartItems.map((item) => (
+          <React.Fragment key={nextId()}>
+            <div className="pageCart_item">
+              <div className="pageCart_selectedProps">
+                <ProductTitle brand={item.brand} name={item.name} />
+                <span>
+                  {`${currencySymbol}${itemPrice(item, currencyIndex)}`}
+                </span>
+                {item.attributes.map((attribute) => {
+                  if (attribute.type === "text") {
+                    return (
+                      <ProductProperty
+                        attribute={attribute}
+                        key={attribute.id}
+                        selected={item.selectedAttributes}
+                      />
+                    );
+                  } else {
+                    return (
+                      <ProductColor
+                        attribute={attribute}
+                        key={attribute.id}
+                        selected={item.selectedAttributes}
+                      />
+                    );
+                  }
+                })}
               </div>
-              <span className="pageCart_divider" />
-            </React.Fragment>
-          ))}
-          <div className="pageCart_summary">
-            <div className="pageCart_summary_static">
-              <p>Tax 21%:</p>
-              <p>Quantity:</p>
-              <p style={{ fontWeight: 500 }}>Total:</p>
+              <CartItems onAdd={onAdd} onRemove={onRemove} item={item} />
             </div>
-            <div className="pageCart_summary_dynamic">
-              <p>{`${currencySymbol}${tax}`}</p>
-              <p>{this.props.quantity}</p>
-              <p>{`${currencySymbol}${withTax}`}</p>
-            </div>
+            <span className="pageCart_divider" />
+          </React.Fragment>
+        ))}
+        <div className="pageCart_summary">
+          <div className="pageCart_summary_static">
+            <p>Tax 21%:</p>
+            <p>Quantity:</p>
+            <p style={{ fontWeight: 500 }}>Total:</p>
           </div>
-          <button
-            className="pageCart_order"
-            onClick={() => this.handleReload()}
-          >
-            ORDER
-          </button>
-        </React.Fragment>
-      );
-    }
-
+          <div className="pageCart_summary_dynamic">
+            <p>{`${currencySymbol}${tax}`}</p>
+            <p>{quantity}</p>
+            <p>{`${currencySymbol}${totalPrice}`}</p>
+          </div>
+        </div>
+        <button className="pageCart_order" onClick={() => checkout()}>
+          ORDER
+        </button>
+      </React.Fragment>
+    );
+  };
+  render() {
+    const { cartItems } = this.props;
     return (
       <div className="pageCart">
         <p className="pageCart_title">CART</p>
-        {cartItems}
+        {cartItems.length === 0
+          ? this.renderEmptyCart()
+          : this.renderCart(cartItems)}
       </div>
     );
   }

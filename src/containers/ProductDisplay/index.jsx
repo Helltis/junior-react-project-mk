@@ -24,6 +24,7 @@ export class ProductContainer extends PureComponent {
       Object.keys(this.selectedAttributes).length < product.attributes.length
     ) {
       // Create toast if no attributes selected
+      // TODO refactor toast solution
       if (!this.state.toast) {
         this.setState({
           active: !this.state.toast,
@@ -43,19 +44,17 @@ export class ProductContainer extends PureComponent {
     }
   };
   render() {
-    const price = this.props.product.prices[this.props.currencyIndex];
-    const inStock = this.props.product.inStock
+    const { product } = this.props;
+    const price = product.prices[this.props.currencyIndex];
+    const inStock = product.inStock
       ? "containerCart_button"
       : "containerCart_button_inactive";
     return (
       <div className="containerCart">
-        <ProductGallery gallery={this.props.product.gallery} />
+        <ProductGallery gallery={product.gallery} />
         <div className="containerCart_properties">
-          <ProductTitle
-            name={this.props.product.name}
-            brand={this.props.product.brand}
-          />
-          {this.props.product.attributes.map((attribute) => {
+          <ProductTitle name={product.name} brand={product.brand} />
+          {product.attributes.map((attribute) => {
             if (attribute.type === "text") {
               return (
                 <ProductProperty
@@ -82,16 +81,14 @@ export class ProductContainer extends PureComponent {
             </p>
           </div>
           <div className={inStock}>
-            <button onClick={() => this.addToCart(this.props.product)}>
-              ADD TO CART
-            </button>
+            <button onClick={() => this.addToCart(product)}>ADD TO CART</button>
             <Toast
               active={this.state.toast}
               message="Please select attributes."
             />
           </div>
           <div className="containerCart_description">
-            {parse(this.props.product.description)}
+            {parse(product.description)}
           </div>
         </div>
       </div>
