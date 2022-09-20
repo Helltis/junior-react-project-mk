@@ -89,14 +89,16 @@ export class App extends PureComponent {
     );
 
   render() {
+    const { cartItemsQuantity, currencyIndex, cartItems, category } =
+      this.state;
     return (
       <div className="App">
         <Navbar
           setCategory={this.setCategory}
           setCurrency={this.setCurrency}
-          cartItemsQuantity={this.state.cartItemsQuantity}
-          currencyIndex={this.state.currencyIndex}
-          cartItems={this.state.cartItems}
+          cartItemsQuantity={cartItemsQuantity}
+          currencyIndex={currencyIndex}
+          cartItems={cartItems}
           onAdd={this.onAdd}
           onRemove={this.onRemove}
         />
@@ -106,8 +108,8 @@ export class App extends PureComponent {
             path="/"
             element={
               <PLP
-                currencyIndex={this.state.currencyIndex}
-                category={this.state.category}
+                currencyIndex={currencyIndex}
+                category={category}
                 onAdd={this.onAdd}
               />
             }
@@ -116,23 +118,18 @@ export class App extends PureComponent {
             path="cart"
             element={
               <Cart
-                cartItems={this.state.cartItems}
-                currencyIndex={this.state.currencyIndex}
+                cartItems={cartItems}
+                currencyIndex={currencyIndex}
                 onAdd={this.onAdd}
                 onRemove={this.onRemove}
-                quantity={this.state.cartItemsQuantity}
+                quantity={cartItemsQuantity}
               />
             }
           />
           <Route path="product">
             <Route
               path=":productId"
-              element={
-                <PDP
-                  currencyIndex={this.state.currencyIndex}
-                  onAdd={this.onAdd}
-                />
-              }
+              element={<PDP currencyIndex={currencyIndex} onAdd={this.onAdd} />}
             />
           </Route>
         </Routes>
