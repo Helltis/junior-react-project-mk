@@ -24,23 +24,24 @@ export class CartOverlay extends PureComponent {
   createToast = () => {
     if (!this.state.toast) {
       this.setState({
-        active: !this.state.toast,
+        toast: !this.state.toast,
       });
       setTimeout(() => {
         this.setState({
-          active: !this.state.toast,
+          toast: !this.state.toast,
         });
       }, 2000);
     }
   };
 
   render() {
-    const { cartItems, currencyIndex, cartItemsQuantity } = this.props;
-    const { selected, toast } = this.state;
-    const totalPrice = calculateTotalWithTax(cartItems, currencyIndex);
-    const cartBadge = cartItemsQuantity === 0 ? "" : "overlay_cart_icon";
-    const isEmpty = cartItems.length === 0 ? true : false;
-    const currencySymbol = cartItems[0]?.prices[currencyIndex].currency.symbol;
+    const { cartItems, currencyIndex, cartItemsQuantity } = this.props,
+      { selected, toast } = this.state,
+      totalPrice = calculateTotalWithTax(cartItems, currencyIndex),
+      cartBadge = cartItemsQuantity === 0 ? "" : "overlay_cart_icon",
+      isEmpty = cartItems.length === 0 ? true : false,
+      currencySymbol = cartItems[0]?.prices[currencyIndex].currency.symbol;
+
     return (
       <div className="overlay">
         <div
@@ -54,7 +55,7 @@ export class CartOverlay extends PureComponent {
         {selected && (
           <>
             <OutsideClickHandler onOutsideClick={this.setSelected}>
-              {!isEmpty && (
+              {
                 <div className="overlay_cart">
                   <div className="overlay_cart_title">
                     <span className="title">My Bag. </span>
@@ -66,8 +67,10 @@ export class CartOverlay extends PureComponent {
                         <div className="overlay_cart_properties">
                           <ProductTitle brand={item.brand} name={item.name} />
                           <span className="overlay_cart_price">
-                            {currencySymbol}
-                            {itemPrice(item, currencyIndex)}
+                            {`${currencySymbol}${itemPrice(
+                              item,
+                              currencyIndex
+                            )}`}
                           </span>
                           {item.attributes.map((attribute) => {
                             if (attribute.type === "text") {
@@ -117,7 +120,7 @@ export class CartOverlay extends PureComponent {
                     </button>
                   </div>
                 </div>
-              )}
+              }
             </OutsideClickHandler>
             {/* this div is used to create gray background on cart overlay activation */}
             <div className="gray_background"></div>

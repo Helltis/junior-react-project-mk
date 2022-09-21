@@ -5,9 +5,10 @@ import { GET_PRODUCT } from "../../graphql/getProduct";
 
 export class PDP extends PureComponent {
   render() {
-    const url = window.location.href;
-    const id = url.split("/")[4];
-    const { currencyIndex, onAdd } = this.props;
+    const url = window.location.href,
+      id = url.split("/")[4],
+      { currencyIndex, onAdd } = this.props;
+
     return (
       <Query query={GET_PRODUCT} variables={{ productId: id }}>
         {({ data, loading, error }) => {

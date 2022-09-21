@@ -43,12 +43,14 @@ export class ProductContainer extends PureComponent {
       this.props.onAdd(productWithAttributes);
     }
   };
+
   render() {
-    const { product } = this.props;
-    const price = product.prices[this.props.currencyIndex];
-    const inStock = product.inStock
-      ? "containerCart_button"
-      : "containerCart_button_inactive";
+    const { product } = this.props,
+      price = product.prices[this.props.currencyIndex],
+      inStock = product.inStock
+        ? "containerCart_button"
+        : "containerCart_button_inactive";
+
     return (
       <div className="containerCart">
         <ProductGallery gallery={product.gallery} />

@@ -21,6 +21,7 @@ export class Navbar extends PureComponent {
       onAdd,
       onRemove,
     } = this.props;
+
     return (
       <Query query={GET_NAVBAR_DATA}>
         {({ data, loading, error }) => {
