@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import CartItems from "../../containers/CartItems";
+import CartItems from "../../components/CartItems";
 import { ProductTitle } from "../../components/ProductTitle";
 import { ProductProperty } from "../../components/ProductProperty";
 import { ProductColor } from "../../components/ProductColor";

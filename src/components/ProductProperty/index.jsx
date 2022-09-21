@@ -5,9 +5,10 @@ import "./productProperty.scss";
 export class ProductProperty extends PureComponent {
   render() {
     // using react-id-generator here to avoid id/name collisions of attributes with same id/name
-    const propertyName = nextId("property");
-    const { attribute, setSelectedAttributes } = this.props;
-    const selected = this.props.selected?.[attribute.name];
+    const propertyName = nextId("property"),
+      { attribute, setSelectedAttributes } = this.props,
+      selected = this.props.selected?.[attribute.name];
+
     return (
       <div className="productProperty">
         <p className="productProperty_text">{`${attribute.name}:`}</p>

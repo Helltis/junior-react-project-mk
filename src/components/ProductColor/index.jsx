@@ -4,9 +4,10 @@ import nextId from "react-id-generator";
 
 export class ProductColor extends PureComponent {
   render() {
-    const name = nextId();
-    const { attribute, setSelectedAttributes } = this.props;
-    const selected = this.props.selected?.[attribute.name];
+    // using react-id-generator here to avoid id/name collisions of attributes with same id/name
+    const name = nextId("color"),
+      { attribute, setSelectedAttributes } = this.props,
+      selected = this.props.selected?.[attribute.name];
     return (
       <div>
         <p className="productColor_text">Color:</p>

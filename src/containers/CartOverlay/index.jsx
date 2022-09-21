@@ -5,7 +5,7 @@ import OutsideClickHandler from "../../components/OutsideClickHandler";
 import { ProductTitle } from "../../components/ProductTitle";
 import { ProductProperty } from "../../components/ProductProperty";
 import { ProductColor } from "../../components/ProductColor";
-import CartItems from "../CartItems";
+import CartItems from "../../components/CartItems";
 import { Link } from "react-router-dom";
 import nextId from "react-id-generator";
 import Toast from "../../components/Toast";

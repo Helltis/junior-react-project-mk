@@ -6,7 +6,9 @@ export class ImageSlider extends PureComponent {
   state = {
     imgIndex: 0,
   };
+
   galleryLength = this.props.gallery.length;
+
   imgFwd = () => {
     if (this.state.imgIndex < this.galleryLength - 1) {
       this.setState({ imgIndex: this.state.imgIndex + 1 });
@@ -14,6 +16,7 @@ export class ImageSlider extends PureComponent {
       this.setState({ imgIndex: 0 });
     }
   };
+
   imgBck = () => {
     if (this.state.imgIndex > 0) {
       this.setState({ imgIndex: this.state.imgIndex - 1 });
@@ -21,15 +24,17 @@ export class ImageSlider extends PureComponent {
       this.setState({ imgIndex: this.galleryLength - 1 });
     }
   };
+
   render() {
-    const { gallery } = this.props;
-    const imgFwd = this.imgFwd,
+    const { gallery } = this.props,
+      imgFwd = this.imgFwd,
       imgBck = this.imgBck,
-      imgIndex = this.state.imgIndex;
-    const imgArrows =
-      this.galleryLength > 1
-        ? "cartComponents_slider_buttons"
-        : "cartComponents_slider_buttons_disabled";
+      imgIndex = this.state.imgIndex,
+      imgArrows =
+        this.galleryLength > 1
+          ? "cartComponents_slider_buttons"
+          : "cartComponents_slider_buttons_disabled";
+
     return (
       <div className="cartComponents_slider">
         <img src={gallery[imgIndex]} alt="product preview" />

@@ -13,9 +13,10 @@ export class CurrencySelect extends PureComponent {
   };
 
   render() {
-    const { currencies, currencyIndex, setCurrency } = this.props;
-    const selected = this.state.selected;
-    const setSelected = this.setSelected;
+    const { currencies, currencyIndex, setCurrency } = this.props,
+      selected = this.state.selected,
+      setSelected = this.setSelected;
+
     return (
       <div className="currency_select">
         <div className="select_menu">
