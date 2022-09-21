@@ -18,14 +18,14 @@ export class Cart extends PureComponent {
   };
 
   renderCart = (cartItems) => {
-    const { currencyIndex, onAdd, onRemove, quantity } = this.props,
+    const { currencyIndex, onAdd, onRemove, quantity, currencySymbol } =
+        this.props,
       totalPrice = calculateTotal(cartItems, currencyIndex),
       tax = calculateTax(totalPrice),
-      totalWithTax = totalPrice + tax,
-      currencySymbol = cartItems[0].prices[currencyIndex].currency.symbol;
+      totalWithTax = totalPrice + tax;
 
     return (
-      <React.Fragment>
+      <>
         {cartItems.map((item) => (
           <React.Fragment key={nextId()}>
             <div className="pageCart_item">
@@ -74,7 +74,7 @@ export class Cart extends PureComponent {
         <button className="pageCart_order" onClick={() => checkout()}>
           ORDER
         </button>
-      </React.Fragment>
+      </>
     );
   };
 

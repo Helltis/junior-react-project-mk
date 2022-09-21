@@ -90,7 +90,9 @@ export class App extends PureComponent {
 
   render() {
     const { cartItemsQuantity, currencyIndex, cartItems, category } =
-      this.state;
+        this.state,
+      currencySymbol = cartItems[0]?.prices[currencyIndex].currency.symbol;
+
     return (
       <div className="App">
         <Navbar
@@ -98,6 +100,7 @@ export class App extends PureComponent {
           setCurrency={this.setCurrency}
           cartItemsQuantity={cartItemsQuantity}
           currencyIndex={currencyIndex}
+          currencySymbol={currencySymbol}
           cartItems={cartItems}
           onAdd={this.onAdd}
           onRemove={this.onRemove}
@@ -111,6 +114,7 @@ export class App extends PureComponent {
                 currencyIndex={currencyIndex}
                 category={category}
                 onAdd={this.onAdd}
+                currencySymbol={currencySymbol}
               />
             }
           />
@@ -123,13 +127,20 @@ export class App extends PureComponent {
                 onAdd={this.onAdd}
                 onRemove={this.onRemove}
                 quantity={cartItemsQuantity}
+                currencySymbol={currencySymbol}
               />
             }
           />
           <Route path="product">
             <Route
               path=":productId"
-              element={<PDP currencyIndex={currencyIndex} onAdd={this.onAdd} />}
+              element={
+                <PDP
+                  currencyIndex={currencyIndex}
+                  onAdd={this.onAdd}
+                  currencySymbol={currencySymbol}
+                />
+              }
             />
           </Route>
         </Routes>

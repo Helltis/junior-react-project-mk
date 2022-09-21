@@ -7,7 +7,7 @@ import { ProductTile } from "../../components/ProductTile/index";
 
 export class Category extends PureComponent {
   render() {
-    const { category, currencyIndex, onAdd } = this.props;
+    const { category, currencyIndex, onAdd, currencySymbol } = this.props;
     return (
       <div className="category">
         <Query
@@ -27,6 +27,7 @@ export class Category extends PureComponent {
                         <ProductTile
                           product={product}
                           currencyIndex={currencyIndex}
+                          currencySymbol={currencySymbol}
                           onAdd={onAdd}
                         />
                       </Link>

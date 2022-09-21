@@ -20,6 +20,7 @@ export class Navbar extends PureComponent {
       cartItems,
       onAdd,
       onRemove,
+      currencySymbol,
     } = this.props;
 
     return (
@@ -53,6 +54,7 @@ export class Navbar extends PureComponent {
                   cartItemsQuantity={cartItemsQuantity}
                   cartItems={cartItems}
                   currencyIndex={currencyIndex}
+                  currencySymbol={currencySymbol}
                   onAdd={onAdd}
                   onRemove={onRemove}
                 />

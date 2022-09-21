@@ -34,13 +34,47 @@ export class CartOverlay extends PureComponent {
     }
   };
 
+  renderCartItem = (item, currencyIndex, currencySymbol) => {
+    const { onAdd, onRemove } = this.props;
+    return (
+      <div className="overlay_cart_item" key={nextId()}>
+        <div className="overlay_cart_properties">
+          <ProductTitle brand={item.brand} name={item.name} />
+          <span className="overlay_cart_price">
+            {`${currencySymbol}${itemPrice(item, currencyIndex)}`}
+          </span>
+          {item.attributes.map((attribute) => {
+            if (attribute.type === "text") {
+              return (
+                <ProductProperty
+                  attribute={attribute}
+                  key={attribute.id}
+                  selected={item.selectedAttributes}
+                />
+              );
+            } else {
+              return (
+                <ProductColor
+                  attribute={attribute}
+                  key={attribute.id}
+                  selected={item.selectedAttributes}
+                />
+              );
+            }
+          })}
+        </div>
+        <CartItems onAdd={onAdd} onRemove={onRemove} item={item} />
+      </div>
+    );
+  };
+
   render() {
-    const { cartItems, currencyIndex, cartItemsQuantity } = this.props,
+    const { cartItems, currencyIndex, cartItemsQuantity, currencySymbol } =
+        this.props,
       { selected, toast } = this.state,
       totalPrice = calculateTotalWithTax(cartItems, currencyIndex),
       cartBadge = cartItemsQuantity === 0 ? "" : "overlay_cart_icon",
-      isEmpty = cartItems.length === 0 ? true : false,
-      currencySymbol = cartItems[0]?.prices[currencyIndex].currency.symbol;
+      isEmpty = cartItems.length === 0 ? true : false;
 
     return (
       <div className="overlay">
@@ -61,42 +95,9 @@ export class CartOverlay extends PureComponent {
                   <span className="quantity">{`${cartItemsQuantity} items`}</span>
                 </div>
                 <div className="overlay_cart_items">
-                  {cartItems.map((item) => (
-                    <div className="overlay_cart_item" key={nextId()}>
-                      <div className="overlay_cart_properties">
-                        <ProductTitle brand={item.brand} name={item.name} />
-                        <span className="overlay_cart_price">
-                          {`${currencySymbol}${itemPrice(item, currencyIndex)}`}
-                        </span>
-                        {item.attributes.map((attribute) => {
-                          if (attribute.type === "text") {
-                            return (
-                              <ProductProperty
-                                attribute={attribute}
-                                key={attribute.id}
-                                selected={item.selectedAttributes}
-                              />
-                            );
-                          } else {
-                            return (
-                              <ProductColor
-                                attribute={attribute}
-                                key={attribute.id}
-                                selected={item.selectedAttributes}
-                              />
-                            );
-                          }
-                        })}
-                      </div>
-                      <CartItems
-                        gallery={item.gallery}
-                        quantity={item.quantity}
-                        onAdd={this.props.onAdd}
-                        onRemove={this.props.onRemove}
-                        item={item}
-                      />
-                    </div>
-                  ))}
+                  {cartItems.map((item) =>
+                    this.renderCartItem(item, currencyIndex, currencySymbol)
+                  )}
                 </div>
                 <div className="overlay_cart_total">
                   <span>Total</span>

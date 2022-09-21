@@ -7,7 +7,7 @@ export class PDP extends PureComponent {
   render() {
     const url = window.location.href,
       id = url.split("/")[4],
-      { currencyIndex, onAdd } = this.props;
+      { currencyIndex, onAdd, currencySymbol } = this.props;
 
     return (
       <Query query={GET_PRODUCT} variables={{ productId: id }}>
@@ -20,6 +20,7 @@ export class PDP extends PureComponent {
                 product={data.product}
                 currencyIndex={currencyIndex}
                 onAdd={onAdd}
+                currencySymbol={currencySymbol}
               />
             </div>
           );

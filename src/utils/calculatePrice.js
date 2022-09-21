@@ -1,7 +1,7 @@
 const TAX = 21;
 
 export function itemPrice(item, currencyIndex) {
-  return (item.prices[currencyIndex].amount * item.quantity).toFixed(2);
+  return Number(item.prices[currencyIndex].amount * item.quantity).toFixed(2);
 }
 
 export function calculateTotalWithTax(products, currencyIndex) {

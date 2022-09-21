@@ -25,11 +25,11 @@ export class ProductContainer extends PureComponent {
     ) {
       if (!this.state.toast) {
         this.setState({
-          active: !this.state.toast,
+          toast: !this.state.toast,
         });
         setTimeout(() => {
           this.setState({
-            active: !this.state.toast,
+            toast: !this.state.toast,
           });
         }, 2000);
       }
