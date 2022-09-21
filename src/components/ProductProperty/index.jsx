@@ -2,30 +2,27 @@ import React, { PureComponent } from "react";
 import nextId from "react-id-generator";
 import "./productProperty.scss";
 
-//TODO try Symbol for ids
 export class ProductProperty extends PureComponent {
-  selected = this.props.selected
-    ? this.props.selected[this.props.attribute.name]
-    : null;
   render() {
     // using react-id-generator here to avoid id/name collisions of attributes with same id/name
-    const name = nextId();
+    const propertyName = nextId("property"),
+      { attribute, setSelectedAttributes } = this.props,
+      selected = this.props.selected?.[attribute.name];
+
     return (
       <div className="productProperty">
-        <p className="productProperty_text">
-          {`${this.props.attribute.name}:`}
-        </p>
+        <p className="productProperty_text">{`${attribute.name}:`}</p>
         <div className="productProperty_buttons">
-          {this.props.attribute.items.map((item) => {
+          {attribute.items.map((button) => {
             const id = nextId();
             return (
-              <React.Fragment key={item.id}>
-                {item.id === this.selected ? (
+              <React.Fragment key={button.id}>
+                {button.id === selected ? (
                   <input
                     className="productProperty_buttons_radio"
                     type="radio"
                     id={id}
-                    name={name}
+                    name={propertyName}
                     checked
                     readOnly
                   />
@@ -33,18 +30,15 @@ export class ProductProperty extends PureComponent {
                   <input
                     className="productProperty_buttons_radio"
                     type="radio"
-                    name={name}
+                    name={propertyName}
                     id={id}
                     onChange={() =>
-                      this.props.setSelectedAttributes(
-                        this.props.attribute.name,
-                        item.id
-                      )
+                      setSelectedAttributes(attribute.name, button.id)
                     }
                   />
                 )}
                 <label className="productProperty_buttons_label" htmlFor={id}>
-                  {item.value}
+                  {button.value}
                 </label>
               </React.Fragment>
             );

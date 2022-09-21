@@ -1,23 +1,11 @@
 import React, { PureComponent } from "react";
-import logo from "../assets/logo.svg";
+import logo from "../../assets/logo.svg";
 import "./navbar.scss";
-import { gql } from "@apollo/client";
 import { Query } from "@apollo/react-components";
 import { Link } from "react-router-dom";
-import CurrencySelect from "./CurrencySelect";
-import CartOverlay from "./CartOverlay";
-
-const query = gql`
-  {
-    categories {
-      name
-    }
-    currencies {
-      label
-      symbol
-    }
-  }
-`;
+import CurrencySelect from "../../components/CurrencySelect";
+import CartOverlay from "../CartOverlay";
+import { GET_NAVBAR_DATA } from "../../graphql/getNavbarData";
 
 export class Navbar extends PureComponent {
   setCategory = (cat) => {
@@ -25,8 +13,18 @@ export class Navbar extends PureComponent {
   };
 
   render() {
+    const {
+      setCurrency,
+      currencyIndex,
+      cartItemsQuantity,
+      cartItems,
+      onAdd,
+      onRemove,
+      currencySymbol,
+    } = this.props;
+
     return (
-      <Query query={query}>
+      <Query query={GET_NAVBAR_DATA}>
         {({ data, loading, error }) => {
           if (loading) return <p>Loading Navbar...</p>;
           if (error) return <p>ERROR LOADING NAVBAR!!!!</p>;
@@ -48,16 +46,17 @@ export class Navbar extends PureComponent {
               </div>
               <div className="navbar_icons">
                 <CurrencySelect
-                  setCurrency={this.props.setCurrency}
+                  setCurrency={setCurrency}
                   currencies={data.currencies}
-                  currencyIndex={this.props.currencyIndex}
+                  currencyIndex={currencyIndex}
                 />
                 <CartOverlay
-                  cartItemsQuantity={this.props.cartItemsQuantity}
-                  cartItems={this.props.cartItems}
-                  currencyIndex={this.props.currencyIndex}
-                  onAdd={this.props.onAdd}
-                  onRemove={this.props.onRemove}
+                  cartItemsQuantity={cartItemsQuantity}
+                  cartItems={cartItems}
+                  currencyIndex={currencyIndex}
+                  currencySymbol={currencySymbol}
+                  onAdd={onAdd}
+                  onRemove={onRemove}
                 />
               </div>
             </nav>

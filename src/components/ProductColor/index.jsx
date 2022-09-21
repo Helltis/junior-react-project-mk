@@ -3,20 +3,21 @@ import "./productColor.scss";
 import nextId from "react-id-generator";
 
 export class ProductColor extends PureComponent {
-  selected = this.props.selected
-    ? this.props.selected[this.props.attribute.name]
-    : null;
   render() {
-    const name = nextId();
+    // using react-id-generator here to avoid id/name collisions of attributes with same id/name
+    const name = nextId("color"),
+      { attribute, setSelectedAttributes } = this.props,
+      selected = this.props.selected?.[attribute.name];
+
     return (
       <div>
         <p className="productColor_text">Color:</p>
         <div className="productColor_buttons">
-          {this.props.attribute.items.map((color) => {
+          {attribute.items.map((color) => {
             const id = nextId();
             return (
               <React.Fragment key={color.id}>
-                {color.id === this.selected ? (
+                {color.id === selected ? (
                   <input
                     className="productColor_buttons_radio"
                     type="radio"
@@ -32,10 +33,7 @@ export class ProductColor extends PureComponent {
                     name={name}
                     id={id}
                     onChange={() =>
-                      this.props.setSelectedAttributes(
-                        this.props.attribute.name,
-                        color.id
-                      )
+                      setSelectedAttributes(attribute.name, color.id)
                     }
                   />
                 )}

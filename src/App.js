@@ -3,7 +3,7 @@ import PLP from "./pages/PLP";
 import "./App.css";
 import { PDP } from "./pages/PDP";
 import Cart from "./pages/Cart";
-import Navbar from "./components/Navbar";
+import Navbar from "./containers/Navbar";
 import { Route, Routes } from "react-router-dom";
 import _ from "lodash";
 
@@ -89,14 +89,19 @@ export class App extends PureComponent {
     );
 
   render() {
+    const { cartItemsQuantity, currencyIndex, cartItems, category } =
+        this.state,
+      currencySymbol = cartItems[0]?.prices[currencyIndex].currency.symbol;
+
     return (
       <div className="App">
         <Navbar
           setCategory={this.setCategory}
           setCurrency={this.setCurrency}
-          cartItemsQuantity={this.state.cartItemsQuantity}
-          currencyIndex={this.state.currencyIndex}
-          cartItems={this.state.cartItems}
+          cartItemsQuantity={cartItemsQuantity}
+          currencyIndex={currencyIndex}
+          currencySymbol={currencySymbol}
+          cartItems={cartItems}
           onAdd={this.onAdd}
           onRemove={this.onRemove}
         />
@@ -106,8 +111,9 @@ export class App extends PureComponent {
             path="/"
             element={
               <PLP
-                currencyIndex={this.state.currencyIndex}
-                category={this.state.category}
+                currencyIndex={currencyIndex}
+                currencySymbol={currencySymbol}
+                category={category}
                 onAdd={this.onAdd}
               />
             }
@@ -116,11 +122,12 @@ export class App extends PureComponent {
             path="cart"
             element={
               <Cart
-                cartItems={this.state.cartItems}
-                currencyIndex={this.state.currencyIndex}
+                cartItems={cartItems}
+                currencyIndex={currencyIndex}
                 onAdd={this.onAdd}
                 onRemove={this.onRemove}
-                quantity={this.state.cartItemsQuantity}
+                quantity={cartItemsQuantity}
+                currencySymbol={currencySymbol}
               />
             }
           />
@@ -129,8 +136,9 @@ export class App extends PureComponent {
               path=":productId"
               element={
                 <PDP
-                  currencyIndex={this.state.currencyIndex}
+                  currencyIndex={currencyIndex}
                   onAdd={this.onAdd}
+                  currencySymbol={currencySymbol}
                 />
               }
             />

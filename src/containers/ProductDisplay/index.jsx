@@ -1,14 +1,14 @@
 import React, { PureComponent } from "react";
 import "./productContainer.scss";
-import { ProductGallery } from "./ProductGallery";
-import { ProductTitle } from "./ProductTitle";
-import { ProductProperty } from "./ProductProperty";
-import { ProductColor } from "./ProductColor";
+import { ProductGallery } from "../../components/ProductGallery";
+import { ProductTitle } from "../../components/ProductTitle";
+import { ProductProperty } from "../../components/ProductProperty";
+import { ProductColor } from "../../components/ProductColor";
 import parse from "html-react-parser";
-import PopUp from "./PopUp";
+import Toast from "../../components/Toast";
 
 export class ProductContainer extends PureComponent {
-  state = { active: false };
+  state = { toast: false };
 
   selectedAttributes = {};
 
@@ -23,14 +23,13 @@ export class ProductContainer extends PureComponent {
     if (
       Object.keys(this.selectedAttributes).length < product.attributes.length
     ) {
-      //Create toast if no attributes selected
-      if (!this.state.active) {
+      if (!this.state.toast) {
         this.setState({
-          active: !this.state.active,
+          toast: !this.state.toast,
         });
         setTimeout(() => {
           this.setState({
-            active: !this.state.active,
+            toast: !this.state.toast,
           });
         }, 2000);
       }
@@ -42,20 +41,20 @@ export class ProductContainer extends PureComponent {
       this.props.onAdd(productWithAttributes);
     }
   };
+
   render() {
-    const price = this.props.product.prices[this.props.currencyIndex];
-    const inStock = this.props.product.inStock
-      ? "containerCart_button"
-      : "containerCart_button_inactive";
+    const { product } = this.props,
+      price = product.prices[this.props.currencyIndex],
+      inStock = product.inStock
+        ? "containerCart_button"
+        : "containerCart_button_inactive";
+
     return (
       <div className="containerCart">
-        <ProductGallery gallery={this.props.product.gallery} />
+        <ProductGallery gallery={product.gallery} />
         <div className="containerCart_properties">
-          <ProductTitle
-            name={this.props.product.name}
-            brand={this.props.product.brand}
-          />
-          {this.props.product.attributes.map((attribute) => {
+          <ProductTitle name={product.name} brand={product.brand} />
+          {product.attributes.map((attribute) => {
             if (attribute.type === "text") {
               return (
                 <ProductProperty
@@ -82,16 +81,14 @@ export class ProductContainer extends PureComponent {
             </p>
           </div>
           <div className={inStock}>
-            <button onClick={() => this.addToCart(this.props.product)}>
-              ADD TO CART
-            </button>
-            <PopUp
-              active={this.state.active}
+            <button onClick={() => this.addToCart(product)}>ADD TO CART</button>
+            <Toast
+              active={this.state.toast}
               message="Please select attributes."
             />
           </div>
           <div className="containerCart_description">
-            {parse(this.props.product.description)}
+            {parse(product.description)}
           </div>
         </div>
       </div>
