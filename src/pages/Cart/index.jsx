@@ -76,6 +76,7 @@ export class Cart extends PureComponent {
       </React.Fragment>
     );
   };
+
   render() {
     const { cartItems } = this.props;
     return (

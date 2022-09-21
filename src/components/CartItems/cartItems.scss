@@ -1,0 +1,41 @@
+.cartComponents {
+  display: flex;
+  gap: 24px;
+  height: 300px;
+}
+
+.cartComponents_quantity {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.cartComponents_quantity_number {
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.cartComponents_slider {
+  position: relative;
+}
+.cartComponents_slider img {
+  width: 200px;
+  height: 100%;
+  object-fit: cover;
+  cursor: default;
+}
+
+.cartComponents_slider_buttons {
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+  position: absolute;
+  right: 10%;
+  bottom: 6%;
+}
+
+.cartComponents_slider_buttons_disabled {
+  visibility: hidden;
+  pointer-events: none;
+}
