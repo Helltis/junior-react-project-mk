@@ -9,7 +9,7 @@ import { checkout } from "../../utils/handleCheckout";
 import {
   calculateTax,
   itemPrice,
-  calculateTotalWithTax,
+  calculateTotal,
 } from "../../utils/calculatePrice";
 
 export class Cart extends PureComponent {
@@ -19,8 +19,9 @@ export class Cart extends PureComponent {
 
   renderCart = (cartItems) => {
     const { currencyIndex, onAdd, onRemove, quantity } = this.props;
-    const totalPrice = calculateTotalWithTax(cartItems, currencyIndex);
+    const totalPrice = calculateTotal(cartItems, currencyIndex);
     const tax = calculateTax(totalPrice);
+    const totalWithTax = totalPrice + tax;
     const currencySymbol = cartItems[0].prices[currencyIndex].currency.symbol;
     return (
       <React.Fragment>
@@ -66,7 +67,7 @@ export class Cart extends PureComponent {
           <div className="pageCart_summary_dynamic">
             <p>{`${currencySymbol}${tax}`}</p>
             <p>{quantity}</p>
-            <p>{`${currencySymbol}${totalPrice}`}</p>
+            <p>{`${currencySymbol}${totalWithTax}`}</p>
           </div>
         </div>
         <button className="pageCart_order" onClick={() => checkout()}>

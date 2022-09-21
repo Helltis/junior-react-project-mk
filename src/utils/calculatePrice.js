@@ -13,6 +13,14 @@ export function calculateTotalWithTax(products, currencyIndex) {
   return total.toFixed(2);
 }
 
+export function calculateTotal(products, currencyIndex) {
+  let total = products.reduce(
+    (total, item) => total + item.prices[currencyIndex].amount * item.quantity,
+    0
+  );
+  return Number(total.toFixed(2));
+}
+
 export function calculateTax(total) {
-  return Number(((total / 100) * 21).toFixed(2));
+  return Number(((total / 100) * TAX).toFixed(2));
 }
