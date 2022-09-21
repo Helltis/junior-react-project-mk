@@ -4,8 +4,9 @@ import cartIcon from "../../assets/cartIcon.svg";
 
 export class ProductTile extends PureComponent {
   render() {
-    const { product, onAdd, currencyIndex, currencySymbol } = this.props,
-      isInStock = product.inStock ? "product" : "product_outOfStock";
+    const { product, onAdd, currencyIndex } = this.props,
+      isInStock = product.inStock ? "product" : "product_outOfStock",
+      currencySymbol = product?.prices[currencyIndex].currency.symbol;
 
     return (
       <div className={isInStock}>

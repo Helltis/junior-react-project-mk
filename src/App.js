@@ -112,9 +112,9 @@ export class App extends PureComponent {
             element={
               <PLP
                 currencyIndex={currencyIndex}
+                currencySymbol={currencySymbol}
                 category={category}
                 onAdd={this.onAdd}
-                currencySymbol={currencySymbol}
               />
             }
           />

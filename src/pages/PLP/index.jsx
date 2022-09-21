@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import { GET_PRODUCTS } from "../../graphql/getProducts";
 import { ProductTile } from "../../components/ProductTile/index";
 
-export class Category extends PureComponent {
+export class PLP extends PureComponent {
   render() {
-    const { category, currencyIndex, onAdd, currencySymbol } = this.props;
+    const { category, currencyIndex, onAdd } = this.props;
     return (
       <div className="category">
         <Query
@@ -27,7 +27,6 @@ export class Category extends PureComponent {
                         <ProductTile
                           product={product}
                           currencyIndex={currencyIndex}
-                          currencySymbol={currencySymbol}
                           onAdd={onAdd}
                         />
                       </Link>
@@ -43,4 +42,4 @@ export class Category extends PureComponent {
   }
 }
 
-export default Category;
+export default PLP;

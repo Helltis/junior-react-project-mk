@@ -13,10 +13,6 @@ import {
 } from "../../utils/calculatePrice";
 
 export class Cart extends PureComponent {
-  renderEmptyCart = () => {
-    <h1>Your cart is empty</h1>;
-  };
-
   renderCart = (cartItems) => {
     const { currencyIndex, onAdd, onRemove, quantity, currencySymbol } =
         this.props,
@@ -83,9 +79,11 @@ export class Cart extends PureComponent {
     return (
       <div className="pageCart">
         <p className="pageCart_title">CART</p>
-        {cartItems.length === 0
-          ? this.renderEmptyCart()
-          : this.renderCart(cartItems)}
+        {cartItems.length === 0 ? (
+          <h1>Your cart is empty</h1>
+        ) : (
+          this.renderCart(cartItems)
+        )}
       </div>
     );
   }
