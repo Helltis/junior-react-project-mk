@@ -22,7 +22,7 @@ export class Cart extends PureComponent {
         this.props,
       totalPrice = calculateTotal(cartItems, currencyIndex),
       tax = calculateTax(totalPrice),
-      totalWithTax = totalPrice + tax;
+      totalWithTax = (totalPrice + tax).toFixed(2);
 
     return (
       <>
