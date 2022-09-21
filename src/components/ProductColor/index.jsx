@@ -8,6 +8,7 @@ export class ProductColor extends PureComponent {
     const name = nextId("color"),
       { attribute, setSelectedAttributes } = this.props,
       selected = this.props.selected?.[attribute.name];
+
     return (
       <div>
         <p className="productColor_text">Color:</p>

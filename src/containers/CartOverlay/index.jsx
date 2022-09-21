@@ -55,75 +55,70 @@ export class CartOverlay extends PureComponent {
         {selected && (
           <>
             <OutsideClickHandler onOutsideClick={this.setSelected}>
-              {
-                <div className="overlay_cart">
-                  <div className="overlay_cart_title">
-                    <span className="title">My Bag. </span>
-                    <span className="quantity">{`${cartItemsQuantity} items`}</span>
-                  </div>
-                  <div className="overlay_cart_items">
-                    {cartItems.map((item) => (
-                      <div className="overlay_cart_item" key={nextId()}>
-                        <div className="overlay_cart_properties">
-                          <ProductTitle brand={item.brand} name={item.name} />
-                          <span className="overlay_cart_price">
-                            {`${currencySymbol}${itemPrice(
-                              item,
-                              currencyIndex
-                            )}`}
-                          </span>
-                          {item.attributes.map((attribute) => {
-                            if (attribute.type === "text") {
-                              return (
-                                <ProductProperty
-                                  attribute={attribute}
-                                  key={attribute.id}
-                                  selected={item.selectedAttributes}
-                                />
-                              );
-                            } else {
-                              return (
-                                <ProductColor
-                                  attribute={attribute}
-                                  key={attribute.id}
-                                  selected={item.selectedAttributes}
-                                />
-                              );
-                            }
-                          })}
-                        </div>
-                        <CartItems
-                          gallery={item.gallery}
-                          quantity={item.quantity}
-                          onAdd={this.props.onAdd}
-                          onRemove={this.props.onRemove}
-                          item={item}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="overlay_cart_total">
-                    <span>Total</span>
-                    <span>{`${currencySymbol}${totalPrice}`}</span>
-                  </div>
-                  <div className="overlay_cart_buttons">
-                    <Link to="/cart">
-                      <button
-                        className="viewBag"
-                        onClick={() => this.setSelected()}
-                      >
-                        VIEW BAG
-                      </button>
-                    </Link>
-                    <button className="checkout" onClick={() => checkout()}>
-                      CHECK OUT
-                    </button>
-                  </div>
+              <div className="overlay_cart">
+                <div className="overlay_cart_title">
+                  <span className="title">My Bag. </span>
+                  <span className="quantity">{`${cartItemsQuantity} items`}</span>
                 </div>
-              }
+                <div className="overlay_cart_items">
+                  {cartItems.map((item) => (
+                    <div className="overlay_cart_item" key={nextId()}>
+                      <div className="overlay_cart_properties">
+                        <ProductTitle brand={item.brand} name={item.name} />
+                        <span className="overlay_cart_price">
+                          {`${currencySymbol}${itemPrice(item, currencyIndex)}`}
+                        </span>
+                        {item.attributes.map((attribute) => {
+                          if (attribute.type === "text") {
+                            return (
+                              <ProductProperty
+                                attribute={attribute}
+                                key={attribute.id}
+                                selected={item.selectedAttributes}
+                              />
+                            );
+                          } else {
+                            return (
+                              <ProductColor
+                                attribute={attribute}
+                                key={attribute.id}
+                                selected={item.selectedAttributes}
+                              />
+                            );
+                          }
+                        })}
+                      </div>
+                      <CartItems
+                        gallery={item.gallery}
+                        quantity={item.quantity}
+                        onAdd={this.props.onAdd}
+                        onRemove={this.props.onRemove}
+                        item={item}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="overlay_cart_total">
+                  <span>Total</span>
+                  <span>{`${currencySymbol}${totalPrice}`}</span>
+                </div>
+                <div className="overlay_cart_buttons">
+                  <Link to="/cart">
+                    <button
+                      className="viewBag"
+                      onClick={() => this.setSelected()}
+                    >
+                      VIEW BAG
+                    </button>
+                  </Link>
+                  <button className="checkout" onClick={() => checkout()}>
+                    CHECK OUT
+                  </button>
+                </div>
+              </div>
             </OutsideClickHandler>
             {/* this div is used to create gray background on cart overlay activation */}
-            <div className="gray_background"></div>
+            <div className="gray_background" />
           </>
         )}
       </div>

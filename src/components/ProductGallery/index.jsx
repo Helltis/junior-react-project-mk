@@ -17,6 +17,7 @@ export class ProductGallery extends PureComponent {
     const { gallery } = this.props,
       selectedImg = this.state.selectedImg,
       setImage = this.setImage;
+
     return (
       <div className="productGallery">
         {gallery.length > 1 && (

@@ -1,9 +1,9 @@
 import React, { PureComponent } from "react";
 import "./plp.scss";
-import Product from "../../components/ProductTile";
 import { Query } from "@apollo/react-components";
 import { Link } from "react-router-dom";
 import { GET_PRODUCTS } from "../../graphql/getProducts";
+import { ProductTile } from "../../components/ProductTile/index";
 
 export class Category extends PureComponent {
   render() {
@@ -24,7 +24,7 @@ export class Category extends PureComponent {
                   {data.category.products.map((product) => (
                     <div className="product_tile" key={product.id}>
                       <Link to={`/product/${product.id}`}>
-                        <Product
+                        <ProductTile
                           product={product}
                           currencyIndex={currencyIndex}
                           onAdd={onAdd}

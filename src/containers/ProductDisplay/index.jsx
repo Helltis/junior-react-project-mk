@@ -23,8 +23,6 @@ export class ProductContainer extends PureComponent {
     if (
       Object.keys(this.selectedAttributes).length < product.attributes.length
     ) {
-      // Create toast if no attributes selected
-      // TODO refactor toast solution
       if (!this.state.toast) {
         this.setState({
           active: !this.state.toast,
